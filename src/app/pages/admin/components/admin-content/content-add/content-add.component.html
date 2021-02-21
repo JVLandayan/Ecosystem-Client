@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-primary">
+        <h4 class="card-title">Add Content</h4>
+        <p class="card-category">You can build your own article here</p>
+      </div>
+      <div class="card-body">
+        <form>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+    <div class="custom-file">
+          <input type="file" class="custom-file-input" aria-describedby="customFileInput" id="customInput" required accept="image/*"/>
+         <label class="custom-file-label" for="customInput">Content Picture</label>
+    </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Post Title</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Post Content</label>
+                <div class="form-group">
+                  <label class="bmd-label-floating">You can edit the content of your post here</label>
+                  <textarea class="form-control" rows="5"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary pull-right">Add Article</button>
+          <div class="clearfix"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+document.querySelector('.custom-file-input').addEventListener('change', function (e) {
+var name = document.getElementById("customFileInput").files[0].name;
+var nextSibling = e.target.nextElementSibling
+nextSibling.innerText = name
+})
+</script>
+

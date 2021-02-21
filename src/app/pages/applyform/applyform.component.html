@@ -1,0 +1,43 @@
+<div class="wrapper" style="background-image: url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=2047&q=80');">
+  <div class="inner">
+    <div class="image-holder">
+      <img src="https://images.unsplash.com/photo-1580414057403-c5f451f30e1c?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=634&q=80" alt="">
+    </div>
+    <form autocomplete="off" method="POST" name="google-sheet"  #f="ngForm" >
+      <h3 style="color: black;">Registration Form</h3>
+      <div class="form-wrapper">
+        <input type="text" required  placeholder="Last Name" name="LastName" ngModel class="form-control">
+        <i class="zmdi zmdi-account"></i>
+      </div>
+                <div class="form-wrapper">
+        <input type="text" required  placeholder="First Name" name="FirstName" ngModel class="form-control">
+        <i class="zmdi zmdi-account"></i>
+      </div>
+                <div class="form-wrapper">
+        <input type="text" required  placeholder="Middle Name" name="MiddleName" ngModel class="form-control">
+        <i class="zmdi zmdi-account"></i>
+      </div>
+                <div class="form-wrapper">
+        <input type="number" required  placeholder="Student Number" name="StudentNumber" ngModel class="form-control">
+        <i class="zmdi zmdi-account"></i>
+      </div>
+      <div class="form-wrapper">
+        <input type="email" email  required placeholder="UST Email" name="USTEmail" ngModel  class="form-control">
+        <i class="zmdi zmdi-email"></i>
+      </div>
+      <div class="form-wrapper">
+        <select name="Role" id="" required ngModel class="form-control">
+          <option value="" disabled selected>Role</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
+      </div>
+      <button [disabled]="!f.valid" type="submit">Submit
+      </button>
+    </form>
+  </div>
+</div>
+
+
