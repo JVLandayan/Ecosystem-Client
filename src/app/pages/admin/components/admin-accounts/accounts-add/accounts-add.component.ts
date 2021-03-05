@@ -39,7 +39,6 @@ export class AccountsAddComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    console.log(this.form.value);
     const userData = new FormData();
     userData.append('first_name', f.value.name_first);
     userData.append('last_name', f.value.name_last);

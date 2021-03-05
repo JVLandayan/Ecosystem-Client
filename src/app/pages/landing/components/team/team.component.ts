@@ -8,20 +8,17 @@ import { LandingService } from 'src/app/shared/services/landing.service';
   styleUrls: ['./team.component.css'],
 })
 export class TeamComponent implements OnInit {
-  team_list: Teams[] = [
-    {
-      member_id: 1,
-      name: 'JV Landayan',
-      description: 'CEO',
-      facebook_link: 'https://facebook.com/jvlandayaaan',
-      instagram_link: 'https://twitter.com/jvlandayaaan',
-      twitter_link: 'https://instagram.com/jvlandayaaan',
-      media_id: '',
-    },
-  ];
+  team_list: Teams[] = [];
 
   constructor(private landingService: LandingService) {
-    this.landingService.FETCH_teams().subscribe((team_data) => {});
+    this.landingService.FETCH_teams().subscribe(
+      (team_data) => {
+        this.team_list = team_data;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   ngOnInit(): void {}

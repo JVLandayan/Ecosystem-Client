@@ -1,9 +1,10 @@
 export interface Teams {
-    member_id: number,
-    name: string,
-    description: string,
-    facebook_link: string | null,
-    instagram_link: string |null,
-    twitter_link: string | null,
-    media_id: string,
+  teams_id: number;
+  teams_image: HTMLImageElement;
+  teams_name: string;
+  teams_role: string;
+  teams_details: string;
+  teams_facebook_link: string | null;
+  teams_instagram_link: string | null;
+  teams_twitter_link: string | null;
 }

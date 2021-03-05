@@ -13,7 +13,6 @@ import { AdminMerchandiseComponent } from './pages/admin/components/admin-mercha
 import { MerchandiseAddComponent } from './pages/admin/components/admin-merchandise/merchandise-add/merchandise-add.component';
 import { MerchandiseListComponent } from './pages/admin/components/admin-merchandise/merchandise-list/merchandise-list.component';
 import { MerchandiseUpdateComponent } from './pages/admin/components/admin-merchandise/merchandise-update/merchandise-update.component';
-import { AdminNewsletterComponent } from './pages/admin/components/admin-newsletter/admin-newsletter.component';
 import { AdminSettingsComponent } from './pages/admin/components/admin-settings/admin-settings.component';
 import { AdminTeamsComponent } from './pages/admin/components/admin-teams/admin-teams.component';
 import { TeamsAddComponent } from './pages/admin/components/admin-teams/teams-add/teams-add.component';
@@ -123,10 +122,6 @@ const routes: Routes = [
             component: MerchandiseUpdateComponent,
           },
         ],
-      },
-      {
-        path: 'newsletter',
-        component: AdminNewsletterComponent,
       },
       {
         path: 'settings',
