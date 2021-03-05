@@ -6,27 +6,49 @@
         <p class="card-category">Add an account</p>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <div class="row">
+            <div class="col-md-4">
+              <div class="custom-file">
+                <input
+                  type="file"
+                  formControlName="image"
+                  id="image"
+                  class="form-control"
+                  (change)="onImageSelected($event)"
+                />
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
                 <label class="bmd-label-floating">Last Name</label>
-                <input type="text" class="form-control" required
-                ngModel name="name_last" id="name_last">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="last_name"
+                />
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label class="bmd-label-floating">First Name</label>
-                <input type="text" class="form-control" required
-                ngModel name="name_first" id="name_first">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="first_name"
+                />
               </div>
             </div>
             <div class="col-md-4">
               <div class="form-group">
                 <label class="bmd-label-floating">Middle Name</label>
-                <input type="text" class="form-control" required
-                ngModel name="name_middle" id="name_middle">
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="middle_name"
+                />
               </div>
             </div>
           </div>
@@ -34,15 +56,20 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label class="bmd-label-floating">UST Email</label>
-                <input type="email" class="form-control"id="ust_email" ngModel name="ust_email">
+                <input
+                  type="email"
+                  class="form-control"
+                  formControlName="ust_email"
+                />
               </div>
             </div>
           </div>
-
-          <button type="submit" class="btn btn-primary pull-right">Submit</button>
+          <button type="submit" class="btn btn-primary pull-right">
+            Submit
+          </button>
           <div class="clearfix"></div>
         </form>
       </div>
     </div>
   </div>
-  </div>
+</div>

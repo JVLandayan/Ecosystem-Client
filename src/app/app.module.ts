@@ -25,11 +25,10 @@ import { AdminTeamsComponent } from './pages/admin/components/admin-teams/admin-
 import { TeamsAddComponent } from './pages/admin/components/admin-teams/teams-add/teams-add.component';
 import { TeamsUpdateComponent } from './pages/admin/components/admin-teams/teams-update/teams-update.component';
 import { TeamsListComponent } from './pages/admin/components/admin-teams/teams-list/teams-list.component';
-import { AdminNewsletterComponent } from './pages/admin/components/admin-newsletter/admin-newsletter.component';
 import { AdminSettingsComponent } from './pages/admin/components/admin-settings/admin-settings.component';
 import { ApplyformComponent } from './pages/applyform/applyform.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleListComponent } from './pages/articlespage/article-list/article-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule } from '@angular/common/http';
@@ -40,6 +39,8 @@ import { MerchandiseAddComponent } from './pages/admin/components/admin-merchand
 import { MerchandiseUpdateComponent } from './pages/admin/components/admin-merchandise/merchandise-update/merchandise-update.component';
 import { MerchandiseListComponent } from './pages/admin/components/admin-merchandise/merchandise-list/merchandise-list.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { authInterceptorProviders } from './shared/helpers/auth.interceptor';
+import { ContentAddComponent } from './pages/admin/components/admin-content/content-add/content-add.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,6 @@ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
     TeamsAddComponent,
     TeamsUpdateComponent,
     TeamsListComponent,
-    AdminNewsletterComponent,
     AdminSettingsComponent,
     ApplyformComponent,
     ArticleListComponent,
@@ -75,16 +75,24 @@ import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
     AdminMerchandiseComponent,
     MerchandiseAddComponent,
     MerchandiseUpdateComponent,
-    MerchandiseListComponent
+    MerchandiseListComponent,
+    ContentAddComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,NgxPaginationModule,HttpClientModule,
-    EditorModule
+    FormsModule,
+    NgxPaginationModule,
+    HttpClientModule,
+    EditorModule,
+    ReactiveFormsModule,
   ],
-  providers: [DatePipe, { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }],
-  bootstrap: [AppComponent]
+  providers: [
+    DatePipe,
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
+    authInterceptorProviders,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

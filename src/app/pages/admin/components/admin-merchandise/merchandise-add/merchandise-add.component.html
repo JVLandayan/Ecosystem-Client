@@ -2,44 +2,64 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title">Add Account</h4>
-        <p class="card-category">Add an account</p>
+        <h4 class="card-title">Add Merchandise</h4>
+        <p class="card-category">Add a Merchandise</p>
       </div>
       <div class="card-body">
-        <form>
+        <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
           <div class="row">
             <div class="col-md-4">
-              <div class="form-group">
-                <label class="bmd-label-floating">Last Name</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="bmd-label-floating">First Name</label>
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
-                <label class="bmd-label-floating">Middle Name</label>
-                <input type="text" class="form-control">
+              <div class="custom-file">
+                <input
+                  type="file"
+                  formControlName="image"
+                  id="image"
+                  class="form-control"
+                  (change)="onImageSelected($event)"
+                />
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label class="bmd-label-floating">UST Email</label>
-                <input type="email" class="form-control">
+                <label class="bmd-label-floating">Item Name</label>
+                <input
+                  type="text"
+                  formControlName="item_name"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="bmd-label-floating">Merchandise Link</label>
+                <input
+                  type="text"
+                  formControlName="item_link"
+                  class="form-control"
+                />
               </div>
             </div>
           </div>
-
-          <button type="submit" class="btn btn-primary pull-right">Submit</button>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Item details</label>
+                <input
+                  type="text"
+                  formControlName="item_details"
+                  class="form-control"
+                />
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary pull-right">
+            Submit
+          </button>
           <div class="clearfix"></div>
         </form>
       </div>
     </div>
   </div>
-  </div>
+</div>

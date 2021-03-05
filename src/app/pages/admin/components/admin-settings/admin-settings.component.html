@@ -1,6 +1,6 @@
 <div class="container-fluid adjustment">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <div class="card">
                   <div class="card-header card-header-primary">
                     <h4 class="card-title">Manage Password</h4>
@@ -33,6 +33,24 @@
                     </form>
                   </div>
         </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header card-header-primary">
+          <h4 class="card-title">Update Profile</h4>
+          <p class="card-category">Change your profile picture here</p>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" aria-describedby="customFileInput" ngModel id="customInput" required accept="image/*"/>
+            <label class="custom-file-label" for="customInput">Profile Picture</label>
+        </div>
+          </form>
+          <button type="submit" class="btn btn-primary pull-right">Update</button>
+          <div class="clearfix"></div>
+        </div>
+</div>
     </div>
   </div>
 </div>

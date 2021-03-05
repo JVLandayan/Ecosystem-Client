@@ -2,159 +2,175 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title ">Accounts</h4>
-        <p class="card-category"> Manage user accounts</p>
+        <h4 class="card-title">Accounts</h4>
+        <p class="card-category">Manage user accounts</p>
       </div>
       <div class="card-body">
         <div class="table-responsive">
           <table class="table">
-            <thead class=" text-primary">
-              <th>
-                ID
-              </th>
-              <th>
-                Name
-              </th>
-              <th>
-                Country
-              </th>
-              <th>
-                City
-              </th>
-
+            <thead class="text-primary">
+              <th>Last Name</th>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>UST Email</th>
+              <th>Date Added</th>
             </thead>
             <tbody>
-              <tr>
-                <td>
-                  1
-                </td>
-                <td>
-                  Dakota Rice
-                </td>
-                <td>
-                  Niger
-                </td>
-                <td>
-                  Oud-Turnhout
-                </td>
-               <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Edit Task">
-                      <i class="material-icons">close</i>
-                    <div class="ripple-container"></div></button>
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  2
-                </td>
-                <td>
-                  Minerva Hooper
-                </td>
-                <td>
-                  Curaçao
-                </td>
-                <td>
-                  Sinaai-Waas
-                </td>
-                 <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Edit Task">
-                      <i class="material-icons">close</i>
-                    <div class="ripple-container"></div></button>
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  3
-                </td>
-                <td>
-                  Sage Rodriguez
-                </td>
-                <td>
-                  Netherlands
-                </td>
-                <td>
-                  Baileux
-                </td>
-                 <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Edit Task">
-                      <i class="material-icons">close</i>
-                    <div class="ripple-container"></div></button>
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  4
-                </td>
-                <td>
-                  Philip Chaney
-                </td>
-                <td>
-                  Korea, South
-                </td>
-                <td>
-                  Overland Park
-                </td>
-              <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Edit Task">
-                      <i class="material-icons">close</i>
-                    <div class="ripple-container"></div></button>
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  5
-                </td>
-                <td>
-                  Doris Greene
-                </td>
-                <td>
-                  Malawi
-                </td>
-                <td>
-                  Feldkirchen in Kärnten
-                </td>
-                  <td class="td-actions text-right">
-                    <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Edit Task">
-                      <i class="material-icons">close</i>
-                    <div class="ripple-container"></div></button>
-                  </td>
-              </tr>
-              <tr>
-                <td>
-                  6
-                </td>
-                <td>
-                  Mason Porter
-                </td>
-                <td>
-                  Chile
-                </td>
-                <td>
-                  Gloucester
-                </td>
+              <tr *ngFor="let accounts of accounts_list">
+                <td></td>
+                <td></td>
+                <td>Niger</td>
+                <td>Oud-Turnhout</td>
                 <td class="td-actions text-right">
-                     <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-                      <i class="material-icons">edit</i>
-                    </button>
-                    <button type="button" rel="tooltip" title="" class="btn btn-danger btn-link btn-sm" data-original-title="Edit Task">
-                      <i class="material-icons">close</i>
-                    <div class="ripple-container"></div></button>
-                  </td>
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title="Edit Task"
+                    class="btn btn-primary btn-link btn-sm"
+                  >
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title=""
+                    class="btn btn-danger btn-link btn-sm"
+                    data-original-title="Edit Task"
+                  >
+                    <i class="material-icons">close</i>
+                    <div class="ripple-container"></div>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Minerva Hooper</td>
+                <td>Curaçao</td>
+                <td>Sinaai-Waas</td>
+                <td class="td-actions text-right">
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title="Edit Task"
+                    class="btn btn-primary btn-link btn-sm"
+                  >
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title=""
+                    class="btn btn-danger btn-link btn-sm"
+                    data-original-title="Edit Task"
+                  >
+                    <i class="material-icons">close</i>
+                    <div class="ripple-container"></div>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Sage Rodriguez</td>
+                <td>Netherlands</td>
+                <td>Baileux</td>
+                <td class="td-actions text-right">
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title="Edit Task"
+                    class="btn btn-primary btn-link btn-sm"
+                  >
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title=""
+                    class="btn btn-danger btn-link btn-sm"
+                    data-original-title="Edit Task"
+                  >
+                    <i class="material-icons">close</i>
+                    <div class="ripple-container"></div>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Philip Chaney</td>
+                <td>Korea, South</td>
+                <td>Overland Park</td>
+                <td class="td-actions text-right">
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title="Edit Task"
+                    class="btn btn-primary btn-link btn-sm"
+                  >
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title=""
+                    class="btn btn-danger btn-link btn-sm"
+                    data-original-title="Edit Task"
+                  >
+                    <i class="material-icons">close</i>
+                    <div class="ripple-container"></div>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Doris Greene</td>
+                <td>Malawi</td>
+                <td>Feldkirchen in Kärnten</td>
+                <td class="td-actions text-right">
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title="Edit Task"
+                    class="btn btn-primary btn-link btn-sm"
+                  >
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title=""
+                    class="btn btn-danger btn-link btn-sm"
+                    data-original-title="Edit Task"
+                  >
+                    <i class="material-icons">close</i>
+                    <div class="ripple-container"></div>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Mason Porter</td>
+                <td>Chile</td>
+                <td>Gloucester</td>
+                <td class="td-actions text-right">
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title="Edit Task"
+                    class="btn btn-primary btn-link btn-sm"
+                  >
+                    <i class="material-icons">edit</i>
+                  </button>
+                  <button
+                    type="button"
+                    rel="tooltip"
+                    title=""
+                    class="btn btn-danger btn-link btn-sm"
+                    data-original-title="Edit Task"
+                  >
+                    <i class="material-icons">close</i>
+                    <div class="ripple-container"></div>
+                  </button>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -163,5 +179,4 @@
       </div>
     </div>
   </div>
-
-  </div>
+</div>

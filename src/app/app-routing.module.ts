@@ -25,61 +25,119 @@ import { ArticlespageComponent } from './pages/articlespage/articlespage.compone
 import { LandingComponent } from './pages/landing/landing.component';
 import { LoginComponent } from './pages/login/login.component';
 
-const routes: Routes = [{
-  path: "", component: LandingComponent
-}, {
-  path: "login", component: LoginComponent
-}, {
-  path:"apply", component: ApplyformComponent
-}, {
-  path:"articles", component: ArticlespageComponent
-}, {
-  path:'articles/:id', component: ArticlePageComponent
-},
+const routes: Routes = [
+  {
+    path: '',
+    component: LandingComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'apply',
+    component: ApplyformComponent,
+  },
+  {
+    path: 'articles',
+    component: ArticlespageComponent,
+  },
+  {
+    path: 'articles/:id',
+    component: ArticlePageComponent,
+  },
 
-//Admin Routes
-{
-  path: "authpanel", component: AdminComponent, children:[{
-    path: "accounts", component: AdminAccountsComponent, children: [{
-      path: "", component: AccountsListComponent
-    }, {
-      path: "add", component: AccountsAddComponent
-    }, {
-      path: "update", component: AccountsUpdateComponent
-    }]
-  },{
-    path: "content", component: AdminContentComponent, children: [{
-      path: "", component: ContentListComponent
-    }, {
-      path: "add", component: ContentAddComponent
-    }, {
-      path: "update", component: ContentUpdateComponent
-    }]
-  },{
-    path: "teams", component: AdminTeamsComponent, children: [{
-      path: "", component: TeamsListComponent
-    }, {
-      path: "add", component: TeamsAddComponent
-    }, {
-      path: "update", component: TeamsUpdateComponent
-    }]
-  },{
-    path: "merchandise", component: AdminMerchandiseComponent, children: [{
-      path: "", component: MerchandiseListComponent
-    }, {
-      path: "add", component: MerchandiseAddComponent
-    }, {
-      path: "update", component: MerchandiseUpdateComponent
-    }]
-  },{
-    path: "newsletter", component: AdminNewsletterComponent
-  },{
-    path: "settings", component: AdminSettingsComponent
-  }]
-}];
+  //Admin Routes
+  {
+    path: 'authpanel',
+    component: AdminComponent,
+    children: [
+      {
+        path: 'accounts',
+        component: AdminAccountsComponent,
+        children: [
+          {
+            path: '',
+            component: AccountsListComponent,
+          },
+          {
+            path: 'add',
+            component: AccountsAddComponent,
+          },
+          {
+            path: 'update/:id',
+            component: AccountsUpdateComponent,
+          },
+        ],
+      },
+      {
+        path: 'content',
+        component: AdminContentComponent,
+        children: [
+          {
+            path: '',
+            component: ContentListComponent,
+          },
+          {
+            path: 'add',
+            component: ContentAddComponent,
+          },
+          {
+            path: 'update/:id',
+            component: ContentUpdateComponent,
+          },
+        ],
+      },
+      {
+        path: 'teams',
+        component: AdminTeamsComponent,
+        children: [
+          {
+            path: '',
+            component: TeamsListComponent,
+          },
+          {
+            path: 'add',
+            component: TeamsAddComponent,
+          },
+          {
+            path: 'update/:id',
+            component: TeamsUpdateComponent,
+          },
+        ],
+      },
+      {
+        path: 'merchandise',
+        component: AdminMerchandiseComponent,
+        children: [
+          {
+            path: '',
+            component: MerchandiseListComponent,
+          },
+          {
+            path: 'add',
+            component: MerchandiseAddComponent,
+          },
+          {
+            path: 'update/:id',
+            component: MerchandiseUpdateComponent,
+          },
+        ],
+      },
+      {
+        path: 'newsletter',
+        component: AdminNewsletterComponent,
+      },
+      {
+        path: 'settings',
+        component: AdminSettingsComponent,
+      },
+    ],
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
