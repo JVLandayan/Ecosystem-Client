@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Teams } from 'src/app/shared/models/teams.model';
 import { LandingService } from 'src/app/shared/services/landing.service';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-team',
@@ -9,11 +10,12 @@ import { LandingService } from 'src/app/shared/services/landing.service';
 })
 export class TeamComponent implements OnInit {
   team_list: Teams[] = [];
+  photoUrl = environment.apiphotoURl;
 
   constructor(private landingService: LandingService) {
     this.landingService.FETCH_teams().subscribe(
-      (team_data) => {
-        this.team_list = team_data;
+      (data) => {
+        this.team_list = data;
       },
       (error) => {
         console.log(error);

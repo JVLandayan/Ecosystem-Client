@@ -14,15 +14,36 @@ export class TeamsUpdateComponent implements OnInit {
   imageSrc: string;
   selectedFile: File = null;
   id: number;
-  active_team_member: Teams;
+  inputName;
+  inputDetails;
+  inputFacebook;
+  inputInstagram;
+  inputTwitter;
+  inputRole;
+  imgSrc;
+  inputImage;
+  PhotoFileName: string;
+  PhotoFilePath: string;
+  imgLoaded = false;
 
   constructor(
     private adminService: AdminService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
+    this.adminService.GET_team_member(this.id).subscribe((data) => {
+      this.inputName = data.teamsName;
+      this.inputDetails = data.teamsDetails;
+      this.inputFacebook = data.teamsFacebook;
+      this.inputInstagram = data.teamsInstagram;
+      this.inputTwitter = data.teamsTwitter;
+      this.inputRole = data.teamsRole;
+      this.inputImage = data.teamsImage;
+      this.imageSrc = this.adminService.photoUrl + this.inputImage;
+    });
     this.form = new FormGroup({
       image: new FormControl(null, { validators: [Validators.required] }),
       teams_name: new FormControl(null, { validators: [Validators.required] }),
@@ -38,16 +59,14 @@ export class TeamsUpdateComponent implements OnInit {
       teams_instagram_link: new FormControl(null, {
         validators: [],
       }),
+      teams_role: new FormControl(null, {
+        validators: [Validators.required],
+      }),
     });
-
-    this.adminService.GET_team_member(this.id).subscribe(
-      (data) => {
-        this.active_team_member = data;
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    setTimeout(() => {
+      this.imgSrc = this.adminService.photoUrl + this.inputImage;
+      this.imgLoaded = true;
+    }, 1000);
   }
 
   onImageSelected(event) {
@@ -63,28 +82,82 @@ export class TeamsUpdateComponent implements OnInit {
         });
       };
     }
+    const formData: FormData = new FormData();
+    formData.append('uploadedFile', this.selectedFile, this.selectedFile.name);
+    formData.append('extn', this.selectedFile.name.split('.').pop());
+    console.log(this.selectedFile.name.split('.').pop().toLowerCase());
+
+    this.adminService.UploadPhotoAccount(formData).subscribe((data: any) => {
+      this.PhotoFileName = data.toString();
+      this.PhotoFilePath = this.adminService.photoUrl + this.PhotoFileName;
+    });
   }
 
   onSubmit(f: NgForm) {
-    const userData = new FormData();
-    userData.append('image', this.selectedFile, this.selectedFile.name);
-    userData.append('teams_name', f.value.teams_name);
-    userData.append('teams_detail', f.value.teams_detail);
-    userData.append('teams_facebook_link', f.value.teams_facebook_link);
-    userData.append('teams_twitter_link', f.value.teams_twitter_link);
-    userData.append('teams_instagram_link', f.value.teams_instagram_link);
+    const form_payload = [];
 
-    const form_payload = userData;
+    if (this.inputName != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/teamsName',
+        value: this.inputName,
+      });
+    }
+    if (this.inputRole != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/teamsRole',
+        value: this.inputRole,
+      });
+    }
+    if (this.inputDetails != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/teamsDetails',
+        value: this.inputDetails,
+      });
+    }
+    if (this.inputFacebook != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/teamsFacebook',
+        value: this.inputFacebook,
+      });
+    }
+    if (this.inputInstagram != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/teamsInstagram',
+        value: this.inputInstagram,
+      });
+    }
+    if (this.inputTwitter != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/teamsTwitter',
+        value: this.inputTwitter,
+      });
+    }
+    console.log(this.PhotoFileName);
+    if (this.PhotoFileName != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/teamsImage',
+        value: this.PhotoFileName,
+      });
+    }
 
     //Data being posted = formData
-    this.adminService.UPDATE_teams_member(form_payload).subscribe(
-      (event) => {
-        console.log(event);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
-    this.form.reset();
+    var conf = confirm('Are you sure with the update?');
+
+    if (conf == true) {
+      this.adminService
+        .UPDATE_teams_member(form_payload, this.id)
+        .subscribe((event) => {
+          console.log(event);
+        });
+    }
+    this.router.navigate(['authpanel', 'teams']);
+    alert('Teams Updated Successfully');
   }
 }

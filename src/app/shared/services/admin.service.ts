@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { Merchandise } from '../models/merchandise.model';
 import { Teams } from '../models/teams.model';
+import { Useraccount } from '../models/useraccount.model';
 
 declare var tinymce: any;
 
@@ -10,10 +12,12 @@ declare var tinymce: any;
 })
 export class AdminService {
   constructor(private http: HttpClient) {}
+  readonly apiUrl = 'http://localhost:5000/api/';
+  readonly photoUrl = 'http://localhost:5000/Photos/';
 
   //START Accounts
-  POST_account(credentials) {
-    return this.http.post('', credentials, {
+  POST_account(userData) {
+    return this.http.post(this.apiUrl + 'accounts', userData, {
       reportProgress: true,
       observe: 'events',
     });
@@ -21,158 +25,107 @@ export class AdminService {
 
   //Get account(1)
   GET_account(id: number) {
-    return this.http.get(''); //in the api url. add the id to reference the specific block
+    return this.http.get<Useraccount>(this.apiUrl + 'accounts/' + id); //in the api url. add the id to reference the specific block
   }
 
   //Get Accounts []
-  GET_accounts() {
-    return this.http.get('').pipe(
-      map((responseData) => {
-        const data_array = [];
-        if (responseData.hasOwnProperty) {
-          for (const key in responseData) {
-            data_array.push(responseData);
-          }
-        }
-        return data_array;
-      })
-    );
+  GET_accounts(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + 'accounts');
   }
 
-  DELETE_account(accountId) {
-    return this.http.delete('' + accountId);
+  DELETE_account(id) {
+    return this.http.delete(this.apiUrl + 'accounts/' + id);
   }
 
-  UPDATE_account(credentials) {
-    return this.http.put('', credentials);
+  UPDATE_account(userData, id) {
+    return this.http.patch(this.apiUrl + 'accounts/' + id, userData);
+  }
+
+  UploadPhotoAccount(val: any) {
+    return this.http.post(this.apiUrl + 'accounts/SaveFile', val);
   }
   //END Accounts
 
   //START Content
   POST_content(content) {
-    return this.http.post('', content);
+    return this.http.post(this.apiUrl + 'articles', content);
   }
 
-  GET_content() {
-    return this.http.get('').pipe(
-      map((responseData) => {
-        const data_array = [];
-        if (responseData.hasOwnProperty) {
-          for (const key in responseData) {
-            data_array.push(responseData);
-          }
-        }
-        return data_array;
-      })
-    );
+  GET_contents(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + 'articles');
+  }
+  GET_content(id: number) {
+    return this.http.get(this.apiUrl + 'articles/' + id);
   }
 
-  PATCH_content(content) {
-    return this.http.patch('', content);
+  PUT_content(content, id: number) {
+    return this.http.put(this.apiUrl + 'articles/' + id, content);
+  }
+  PATCH_content(content, id: number) {
+    return this.http.patch(this.apiUrl + 'articles/' + id, content);
+  }
+  DELETE_content(id) {
+    return this.http.delete(this.apiUrl + 'articles/' + id);
+  }
+  UploadPhotoArticle(val: any) {
+    return this.http.post(this.apiUrl + 'article/SaveFile', val);
   }
   //End Content
 
   //START MERCH
   //Add merch
   POST_merch(credentials) {
-    return this.http.post('', credentials, {
-      reportProgress: true,
-      observe: 'events',
-    });
+    return this.http.post(this.apiUrl + 'merchandise', credentials);
   }
 
   //Get Merch(1)
   GET_merch(id: number) {
-    return this.http.get(''); //in the api url. add the id to reference the specific block
+    return this.http.get<Merchandise>(this.apiUrl + 'merchandise/' + id); //in the api url. add the id to reference the specific block
   }
 
   //Merch List
-  GET_merchs() {
-    return this.http.get('').pipe(
-      map((responseData) => {
-        const data_array = [];
-        if (responseData.hasOwnProperty) {
-          for (const key in responseData) {
-            data_array.push(responseData);
-          }
-        }
-        return data_array;
-      })
-    );
+  GET_merchs(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + 'merchandise');
   }
 
   DELETE_merch(merchId) {
-    return this.http.delete('' + merchId);
+    return this.http.delete(this.apiUrl + 'merchandise/' + merchId);
   }
 
   UPDATE_merch(merchData, id: number) {
-    return this.http.put('' + id, merchData);
+    return this.http.patch(this.apiUrl + 'merchandise/' + id, merchData);
+  }
+  UploadPhotoMerch(val: any) {
+    return this.http.post(this.apiUrl + 'merchandise/SaveFile', val);
   }
 
   //END MERCH
 
   //TEAMS START
   POST_teams_member(credentials) {
-    return this.http.post('', credentials, {
-      reportProgress: true,
-      observe: 'events',
-    });
+    return this.http.post(this.apiUrl + 'teams', credentials);
   }
 
   //GET_Team member
   GET_team_member(id: number) {
-    return this.http.get<Teams>(''); //in the api url. add the id to reference the specific block
+    return this.http.get<Teams>(this.apiUrl + 'teams/' + id); //in the api url. add the id to reference the specific block
   }
 
   //Get teams  []
-  GET_teams_list() {
-    return this.http.get('').pipe(
-      map((responseData) => {
-        const data_array = [];
-        if (responseData.hasOwnProperty) {
-          for (const key in responseData) {
-            data_array.push(responseData);
-          }
-        }
-        return data_array;
-      })
-    );
+  GET_teams_list(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl + 'teams');
   }
 
   DELETE_teams_member(accountId) {
-    return this.http.delete('' + accountId);
+    return this.http.delete(this.apiUrl + 'teams/' + accountId);
   }
 
-  UPDATE_teams_member(credentials) {
-    return this.http.put('', credentials);
+  UPDATE_teams_member(credentials, id: number) {
+    return this.http.patch(this.apiUrl + 'teams/' + id, credentials);
+  }
+  UploadPhotoTeams(val: any) {
+    return this.http.post(this.apiUrl + 'teams/SaveFile', val);
   }
 
   //TEAMS END
-
-  //SETTINGS/PROFILE START
-  UPDATE_image(image, id) {
-    return this.http.put('' + id, image);
-  }
-
-  //SETTINGS/PROFILE END
-
-  //SETTINGS/PASSWORD START
-  UPDATE_pass(pass_data, id) {
-    return this.http.put('' + id, pass_data);
-  }
-  //SETTINGS/PASSWORD END
-
-  //RICH TEXT START
-
-  INIT_RTE(data: string) {
-    return tinymce.init({
-      selector: '#' + data,
-    });
-  }
-
-  get DATA_RTE() {
-    return tinymce;
-  }
-
-  //RICH TEXT END
 }

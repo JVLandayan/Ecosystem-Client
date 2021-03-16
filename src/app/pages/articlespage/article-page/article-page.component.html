@@ -1,38 +1,65 @@
+<div class="main-wrapper" style="margin-left: 0px; background-color: white">
+  <div class="intro text-center" style="padding-top: 2%">
+    <a class="text-center" style="color: #6c757d" href="/articles">Go back</a>
+  </div>
+</div>
+
 <section class="py-5">
   <div class="container py-4">
     <div class="row text-center">
       <div class="col-lg-8 mx-auto">
-        <h1 style="color:black">Title</h1>
+        <h1 style="color: black">{{ activeArticle.name }}</h1>
         <ul class="list-inline mb-5">
-          <li class="list-inline-item mx-2"><a class="text-uppercase text-muted reset-anchor" href="#">BY Sam Smith</a></li>
-          <li class="list-inline-item mx-2"><a class="text-uppercase text-muted reset-anchor" href="#">Date</a></li>
+          <li class="list-inline-item mx-2">
+            <a class="text-uppercase text-muted reset-anchor" href="#"
+              >BY {{ activeArticle.authorName }}</a
+            >
+          </li>
+          <li class="list-inline-item mx-2">
+            <a class="text-uppercase text-muted reset-anchor" href="#">{{
+              activeArticle.dateofPublish
+            }}</a>
+          </li>
         </ul>
       </div>
-    </div><img class="w-100 mb-5" src="https://images.hgmsites.net/lrg/pagani-huayra-lultimo--image-via-prestige-imports-miami_100664356_l.jpg" alt="...">
+    </div>
+    <img
+      class="w-100 mb-5"
+      [src]="photoUrlApi + activeArticle.image"
+      height="600"
+      alt="..."
+    />
     <div class="row">
       <div class="col-lg-9">
-
-        <blockquote class="blockquote bg-light p-4 p-lg-5 text-center mb-5">
-          <p class="h4 mb-4">Design is the fundamental soul of a human-made creation that ends up expressing itself in successive outer layers of the product or service.</p>
+        <blockquote
+          class="blockquote bg-light p-4 p-lg-5 text-center mb-5"
+          [innerHTML]="activeArticle.content"
+        >
+          <p class="h4 mb-4">
+            Design is the fundamental soul of a human-made creation that ends up
+            expressing itself in successive outer layers of the product or
+            service.
+          </p>
           <footer class="blockquote-footer">
             <cite title="Source Title">Steve Jobs</cite>
           </footer>
         </blockquote>
-        <p class="mb-5" style="color:black">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
-
       </div>
       <!-- Blog sidebar-->
       <div class="col-lg-3">
         <!-- About category-->
         <div class="card rounded-0 border-0 bg-light mb-4 py-lg-4">
           <div class="card-body text-center">
-            <h2 class="h3 mb-3" style="color:black" >About me</h2><img class="rounded-circle mb-3" src="https://www.femalefirst.co.uk/image-library/partners/bang/square/1000/s/sam-smith-6719f9731b9c32c50adf1482b02a386f34797c27.jpg" alt="..." width="100">
-            <p class="text-small text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
-            <ul class="list-inline small mb-0 text-dark">
-              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fa fa-facebook-f fa-fw"></i></a></li>
-              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fa fa-twitter fa-fw"></i></a></li>
-              <li class="list-inline-item"><a class="reset-anchor" href="#"><i class="fa fa-instagram fa-fw"></i></a></li>
-            </ul>
+            <h2 class="h3 mb-3" style="color: black">About me</h2>
+            <img
+              class="rounded-circle mb-3"
+              [src]="photoUrlApi + activeArticle.authorImg"
+              alt="..."
+              width="100"
+            />
+            <p class="text-small text-muted">
+              {{ activeArticle.authorName }}
+            </p>
           </div>
         </div>
       </div>

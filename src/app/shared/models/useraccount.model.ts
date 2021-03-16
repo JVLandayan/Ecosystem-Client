@@ -1,7 +1,10 @@
-export interface User {
-  authId: number,
-  first_name: string,
-  last_name: string,
-  middle_name: string
-  email : string,
+export interface Useraccount {
+  id: number;
+  authId: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  middleName: string;
+  password: string;
+  photoFileName: string;
 }

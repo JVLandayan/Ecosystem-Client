@@ -6,27 +6,38 @@
         <p class="card-category">You can build your own article here</p>
       </div>
       <div class="card-body">
-        <form
-        [formGroup]="form"
-        #f="ngForm"
-        (ngSubmit)="onSubmit(f)">
-
+        <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
           <div class="row">
             <div class="col-md-4">
-                  <input
-                  type="file"
-                  formControlName="post_image"
-                  id="image"
-                  class="form-control"
-                  (change)="onImageSelected($event)"
-                 />
+              <input
+                type="file"
+                formControlName="post_image"
+                id="image"
+                class="form-control"
+                (change)="onImageSelected($event)"
+                accept="image/*"
+              />
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
                 <label class="bmd-label-floating">Post Title</label>
-                <input formControlName="post_title" type="text" class="form-control">
+                <input
+                  formControlName="post_title"
+                  type="text"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <label class="bmd-label-floating">Post Intro</label>
+                <input
+                  formControlName="post_intro"
+                  type="text"
+                  class="form-control"
+                />
               </div>
             </div>
           </div>
@@ -35,18 +46,25 @@
               <div class="form-group">
                 <label>Post Content</label>
                 <div class="form-group">
-                  <label class="bmd-label-floating">You can edit the content of your post here</label>
-                  <textarea formControlName="post_content" id="contentcreate"></textarea>
+                  <label class="bmd-label-floating"
+                    >You can edit the content of your post here</label
+                  >
+                  <editor
+                    [formControl]="form.controls.post_content"
+                    [apiKey]="apiKey"
+                    [init]="RTEInit"
+                    (onInit)="handleEditorInit($event)"
+                  ></editor>
                 </div>
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary pull-right">Submit</button>
+          <button type="submit" class="btn btn-primary pull-right">
+            Submit
+          </button>
           <div class="clearfix"></div>
         </form>
       </div>
     </div>
   </div>
 </div>
-
-

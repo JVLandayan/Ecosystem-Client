@@ -9,11 +9,11 @@ import { AdminContentComponent } from './pages/admin/components/admin-content/ad
 import { ContentAddComponent } from './pages/admin/components/admin-content/content-add/content-add.component';
 import { ContentListComponent } from './pages/admin/components/admin-content/content-list/content-list.component';
 import { ContentUpdateComponent } from './pages/admin/components/admin-content/content-update/content-update.component';
+import { AdminHomeComponent } from './pages/admin/components/admin-home/admin-home.component';
 import { AdminMerchandiseComponent } from './pages/admin/components/admin-merchandise/admin-merchandise.component';
 import { MerchandiseAddComponent } from './pages/admin/components/admin-merchandise/merchandise-add/merchandise-add.component';
 import { MerchandiseListComponent } from './pages/admin/components/admin-merchandise/merchandise-list/merchandise-list.component';
 import { MerchandiseUpdateComponent } from './pages/admin/components/admin-merchandise/merchandise-update/merchandise-update.component';
-import { AdminSettingsComponent } from './pages/admin/components/admin-settings/admin-settings.component';
 import { AdminTeamsComponent } from './pages/admin/components/admin-teams/admin-teams.component';
 import { TeamsAddComponent } from './pages/admin/components/admin-teams/teams-add/teams-add.component';
 import { TeamsListComponent } from './pages/admin/components/admin-teams/teams-list/teams-list.component';
@@ -21,8 +21,10 @@ import { TeamsUpdateComponent } from './pages/admin/components/admin-teams/teams
 import { ApplyformComponent } from './pages/applyform/applyform.component';
 import { ArticlePageComponent } from './pages/articlespage/article-page/article-page.component';
 import { ArticlespageComponent } from './pages/articlespage/articlespage.component';
+import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -45,15 +47,25 @@ const routes: Routes = [
     path: 'articles/:id',
     component: ArticlePageComponent,
   },
+  {
+    path: 'resetpassword',
+    component: ForgotpassComponent,
+  },
 
   //Admin Routes
   {
     path: 'authpanel',
     component: AdminComponent,
+    canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        component: AdminHomeComponent,
+      },
       {
         path: 'accounts',
         component: AdminAccountsComponent,
+        canActivateChild: [AuthGuard],
         children: [
           {
             path: '',
@@ -90,6 +102,7 @@ const routes: Routes = [
       {
         path: 'teams',
         component: AdminTeamsComponent,
+        canActivateChild: [AuthGuard],
         children: [
           {
             path: '',
@@ -108,6 +121,7 @@ const routes: Routes = [
       {
         path: 'merchandise',
         component: AdminMerchandiseComponent,
+        canActivateChild: [AuthGuard],
         children: [
           {
             path: '',
@@ -123,12 +137,9 @@ const routes: Routes = [
           },
         ],
       },
-      {
-        path: 'settings',
-        component: AdminSettingsComponent,
-      },
     ],
   },
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

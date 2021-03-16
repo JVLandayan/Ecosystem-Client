@@ -10,22 +10,26 @@ import { AdminService } from 'src/app/shared/services/admin.service';
 export class MerchandiseListComponent implements OnInit {
   constructor(private adminService: AdminService) {}
 
-  merch_list: Merchandise[] = [];
+  merch_list = [];
 
   ngOnInit(): void {
-    this.adminService.GET_merchs().subscribe((data) => {
-      this.merch_list = data;
+    this.adminService.GET_merchs().subscribe((res) => {
+      this.merch_list = res;
+      console.log(this.merch_list);
     });
   }
 
   onDeleteMerch(id: number) {
-    this.adminService.DELETE_merch(id).subscribe(
-      (data) => {
-        this.ngOnInit();
-      },
-      (error) => {
-        window.prompt('An error has occured, error type: ' + error);
-      }
-    );
+    var r = confirm('Confirm Delete?');
+    if (r == true) {
+      this.adminService.DELETE_merch(id).subscribe(
+        () => {
+          this.ngOnInit();
+        },
+        (error) => {
+          window.prompt('An error has occured, error type: ' + error);
+        }
+      );
+    }
   }
 }

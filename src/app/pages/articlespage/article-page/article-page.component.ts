@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { articlelist } from 'src/app/shared/models/articleslist.model';
-import { ArticlesService } from 'src/app/shared/services/articles.service';
+import { Articles } from 'src/app/shared/models/articles.model';
+
+import { LandingService } from 'src/app/shared/services/landing.service';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-article-page',
@@ -9,21 +11,20 @@ import { ArticlesService } from 'src/app/shared/services/articles.service';
   styleUrls: ['./article-page.component.css'],
 })
 export class ArticlePageComponent implements OnInit {
-  activeArticle: any;
+  activeArticle: Articles;
+  id;
+  photoUrlApi = environment.apiphotoURl;
 
   constructor(
     private route: ActivatedRoute,
-    private articleService: ArticlesService
+    private landingService: LandingService
   ) {}
 
   ngOnInit(): void {
-    const article = this.articleService.blogContent.find(
-      (data: articlelist) => {
-        return data.id == +this.route.snapshot.params['id'];
-      }
-    );
-    this.activeArticle = article;
+    this.id = this.route.snapshot.params['id'];
+    this.landingService.FETCH_article(this.id).subscribe((data) => {
+      this.activeArticle = data;
+      console.log(this.activeArticle.content);
+    });
   }
-
-  content = '';
 }

@@ -7,27 +7,30 @@ import {
 } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { TokenStorageService } from '../services/token-storage.service';
+
+import { AuthService } from '../services/auth.service';
+import { environment } from '../../../environments/environment';
 
 const TOKEN_HEADER_KEY = 'x-access-token';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private token: TokenStorageService) {}
+  constructor(private authenticationService: AuthService) {}
   intercept(
-    req: HttpRequest<any>,
+    request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    let authReq = req;
-    const token = this.token.get_token();
-    if (token != null) {
-      authReq = req.clone({
-        headers: req.headers.set(TOKEN_HEADER_KEY, token),
+    // add auth header with jwt if user is logged in and request is to the api url
+    const currentUser = this.authenticationService.currentUserValue;
+    const isLoggedIn = currentUser && currentUser.token;
+    const isApiUrl = request.url.startsWith(environment.apiUrl);
+    if (isLoggedIn && isApiUrl) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Bearer ${currentUser.token}`,
+        },
       });
     }
-    return next.handle(authReq);
+
+    return next.handle(request);
   }
 }
-
-export const authInterceptorProviders = [
-  { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-];

@@ -25,13 +25,12 @@ import { AdminTeamsComponent } from './pages/admin/components/admin-teams/admin-
 import { TeamsAddComponent } from './pages/admin/components/admin-teams/teams-add/teams-add.component';
 import { TeamsUpdateComponent } from './pages/admin/components/admin-teams/teams-update/teams-update.component';
 import { TeamsListComponent } from './pages/admin/components/admin-teams/teams-list/teams-list.component';
-import { AdminSettingsComponent } from './pages/admin/components/admin-settings/admin-settings.component';
 import { ApplyformComponent } from './pages/applyform/applyform.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleListComponent } from './pages/articlespage/article-list/article-list.component';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticlespageComponent } from './pages/articlespage/articlespage.component';
 import { DatePipe } from '@angular/common';
 import { AdminMerchandiseComponent } from './pages/admin/components/admin-merchandise/admin-merchandise.component';
@@ -39,8 +38,13 @@ import { MerchandiseAddComponent } from './pages/admin/components/admin-merchand
 import { MerchandiseUpdateComponent } from './pages/admin/components/admin-merchandise/merchandise-update/merchandise-update.component';
 import { MerchandiseListComponent } from './pages/admin/components/admin-merchandise/merchandise-list/merchandise-list.component';
 import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
-import { authInterceptorProviders } from './shared/helpers/auth.interceptor';
 import { ContentAddComponent } from './pages/admin/components/admin-content/content-add/content-add.component';
+import { ContentListComponent } from './pages/admin/components/admin-content/content-list/content-list.component';
+import { ContentUpdateComponent } from './pages/admin/components/admin-content/content-update/content-update.component';
+import { AuthInterceptor } from '../app/shared/helpers/auth.interceptor';
+import { ErrorInterceptor } from '../app/shared/helpers/error.interceptor';
+import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
+import { AdminHomeComponent } from './pages/admin/components/admin-home/admin-home.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +72,6 @@ import { ContentAddComponent } from './pages/admin/components/admin-content/cont
     TeamsAddComponent,
     TeamsUpdateComponent,
     TeamsListComponent,
-    AdminSettingsComponent,
     ApplyformComponent,
     ArticleListComponent,
     ArticlespageComponent,
@@ -77,6 +80,10 @@ import { ContentAddComponent } from './pages/admin/components/admin-content/cont
     MerchandiseUpdateComponent,
     MerchandiseListComponent,
     ContentAddComponent,
+    ContentListComponent,
+    ContentUpdateComponent,
+    ForgotpassComponent,
+    AdminHomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -91,7 +98,8 @@ import { ContentAddComponent } from './pages/admin/components/admin-content/cont
   providers: [
     DatePipe,
     { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' },
-    authInterceptorProviders,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],
 })

@@ -2,11 +2,19 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title">Edit Name</h4>
-        <p class="card-category">You can edit the person's information here</p>
+        <h4 class="card-title">Add Team Member</h4>
+        <p class="card-category">You can add a team member here</p>
       </div>
       <div class="card-body">
         <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <img
+            *ngIf="PhotoFileName != null"
+            [src]="PhotoFilePath"
+            alt=""
+            srcset=""
+            height="300px"
+            width="300px"
+          />
           <div class="row">
             <div class="col-md-4">
               <div class="custom-file">
@@ -16,6 +24,7 @@
                   id="image"
                   class="form-control"
                   (change)="onImageSelected($event)"
+                  accept="image/*"
                 />
               </div>
             </div>
@@ -29,6 +38,20 @@
                   formControlName="teams_name"
                   class="form-control"
                 />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Role</label>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    formControlName="teams_role"
+                    class="form-control"
+                  />
+                </div>
               </div>
             </div>
           </div>

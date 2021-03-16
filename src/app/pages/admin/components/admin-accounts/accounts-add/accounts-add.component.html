@@ -9,6 +9,18 @@
         <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
           <div class="row">
             <div class="col-md-4">
+              <img
+                *ngIf="PhotoFileName != null"
+                [src]="PhotoFilePath"
+                alt=""
+                srcset=""
+                height="300px"
+                width="300px"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
               <div class="custom-file">
                 <input
                   type="file"
@@ -16,6 +28,7 @@
                   id="image"
                   class="form-control"
                   (change)="onImageSelected($event)"
+                  accept="image/*"
                 />
               </div>
             </div>
@@ -60,11 +73,24 @@
                   type="email"
                   class="form-control"
                   formControlName="ust_email"
+                  placeholder="johndoe.eng@ust.edu.ph"
+                  pattern=".+@ust.edu.ph"
+                  id="ust_email"
                 />
+                <span
+                  *ngIf="
+                    form.get('ust_email').dirty && form.get('ust_email').invalid
+                  "
+                  >Please input a valid ust email</span
+                >
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary pull-right">
+          <button
+            type="submit"
+            class="btn btn-primary pull-right"
+            [disabled]="form.invalid"
+          >
             Submit
           </button>
           <div class="clearfix"></div>

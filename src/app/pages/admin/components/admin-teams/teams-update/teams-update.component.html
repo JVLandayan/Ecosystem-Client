@@ -2,11 +2,30 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary">
-        <h4 class="card-title">Update Name</h4>
-        <p class="card-category">You can edit the person's information here</p>
+        <h4 class="card-title">Update Teams</h4>
+        <p class="card-category">You can update a team member here</p>
       </div>
       <div class="card-body">
         <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <div class="row">
+            <div class="col-md-4" *ngIf="imgLoaded">
+              <img
+                *ngIf="this.imageSrc == null"
+                [src]="imgSrc"
+                alt=""
+                srcset=""
+                height="300px"
+                width="300px"
+              />
+              <img
+                [src]="this.imageSrc"
+                alt=""
+                srcset=""
+                height="300px"
+                width="300px"
+              />
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-4">
               <div class="custom-file">
@@ -28,8 +47,23 @@
                   type="text"
                   formControlName="teams_name"
                   class="form-control"
-                  [value]="this.active_team_member.teams_name"
+                  [(ngModel)]="inputName"
                 />
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label>Role</label>
+                <div class="form-group">
+                  <input
+                    type="text"
+                    formControlName="teams_role"
+                    class="form-control"
+                    [(ngModel)]="inputRole"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -45,7 +79,7 @@
                     type="text"
                     formControlName="teams_detail"
                     class="form-control"
-                    [value]="this.active_team_member.teams_details"
+                    [(ngModel)]="inputDetails"
                   />
                 </div>
               </div>
@@ -61,7 +95,7 @@
                   type="text"
                   formControlName="teams_facebook_link"
                   class="form-control"
-                  [value]="this.active_team_member.teams_facebook_link"
+                  [(ngModel)]="inputFacebook"
                 />
               </div>
             </div>
@@ -72,7 +106,7 @@
                   type="text"
                   formControlName="teams_twitter_link"
                   class="form-control"
-                  [value]="this.active_team_member.teams_twitter_link"
+                  [(ngModel)]="inputTwitter"
                 />
               </div>
             </div>
@@ -83,7 +117,7 @@
                   type="text"
                   formControlName="teams_instagram_link"
                   class="form-control"
-                  [value]="this.active_team_member.teams_instagram_link"
+                  [(ngModel)]="inputInstagram"
                 />
               </div>
             </div>

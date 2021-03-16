@@ -5,11 +5,19 @@
   data-image="../assets/img/sidebar-1.jpg"
 >
   <div class="logo">
-    <a routerLink="accounts" class="simple-text logo-normal"> Ecosystem </a>
+    <a routerLink="accounts" class="simple-text logo-normal">
+      Ecosystem | {{ currentUser.authId == 1 ? "Admin" : "Author" }}</a
+    >
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
       <li class="nav-item">
+        <a class="nav-link" routerLink="/authpanel" routerLinkActive>
+          <i class="material-icons">account_circle</i>
+          <p>Home</p>
+        </a>
+      </li>
+      <li class="nav-item" *ngIf="currentUser.authId == 1">
         <a class="nav-link" routerLink="accounts" routerLinkActive>
           <i class="material-icons">dashboard</i>
           <p>Accounts</p>
@@ -21,26 +29,20 @@
           <p>Contents</p>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="currentUser.authId == 1">
         <a class="nav-link" routerLink="teams">
           <i class="material-icons">group</i>
           <p>Teams</p>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="currentUser.authId == 1">
         <a class="nav-link" routerLink="merchandise" routerLinkActive>
           <i class="material-icons">dashboard</i>
           <p>Merchandise</p>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="settings">
-          <i class="material-icons">settings</i>
-          <p>Settings</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="login">
+        <a class="nav-link" (click)="onLogout()" routerLink="/">
           <i class="material-icons">subdirectory_arrow_right</i>
           <p>Logout</p>
         </a>

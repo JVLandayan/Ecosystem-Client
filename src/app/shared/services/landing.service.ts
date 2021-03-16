@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { Merchandise } from '../models/merchandise.model';
 import { map } from 'rxjs/operators';
 import { Teams } from '../models/teams.model';
+import { environment } from '../../../environments/environment';
+import { Observable } from 'tinymce';
+import { Articles } from '../models/articles.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,31 +15,19 @@ export class LandingService {
 
   //merch-fetch-data
   FETCH_merchandise() {
-    return this.http.get('').pipe(
-      map((responseData) => {
-        const responseArray = [];
-        if (responseData.hasOwnProperty) {
-          for (const key in responseData) {
-            responseArray.push(responseData);
-          }
-        }
-        return responseArray;
-      })
-    );
+    return this.http.get<Merchandise[]>(environment.apiUrl + 'merchandise');
   }
 
   //teams-fetch-data
   FETCH_teams() {
-    return this.http.get<Teams>('').pipe(
-      map((responseData) => {
-        const responseArray = [];
-        if (responseData.hasOwnProperty) {
-          for (const key in responseData) {
-            responseArray.push(responseData);
-          }
-        }
-        return responseArray;
-      })
-    );
+    return this.http.get<Teams[]>(environment.apiUrl + 'teams');
+  }
+
+  FETCH_articles() {
+    return this.http.get<Articles[]>(environment.apiUrl + 'articles');
+  }
+
+  FETCH_article(id) {
+    return this.http.get<Articles>(environment.apiUrl + 'articles/' + id);
   }
 }

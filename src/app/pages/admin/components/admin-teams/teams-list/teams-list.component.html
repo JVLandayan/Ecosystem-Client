@@ -3,51 +3,48 @@
     <div class="card card-profile">
       <div class="card-avatar">
         <a href="javascript:;">
-          <img class="img" [src]="this.member.teams_image" />
+          <img
+            class="img"
+            style="width: 130px; height: 156.641px"
+            [src]="photoUrl + this.member.teamsImage"
+          />
         </a>
       </div>
       <div class="card-body">
-        <h6 class="card-category text-gray">{{ member.teams_role }}</h6>
-        <h4 class="card-title">Alec Thompson</h4>
+        <h6 class="card-category text-gray">{{ member.teamsRole }}</h6>
+        <h4 class="card-title">{{ member.teamsName }}</h4>
         <p class="card-description">
-          {{ member.teams_details }}
+          {{ member.teamsDetails }}
         </p>
         <a
-          href="javascript:;"
           class="btn btn-primary btn-round"
-          [routerLink]="['update', member.teams_id]"
+          [routerLink]="['update', member.teamsId]"
           >Edit</a
         >
         <a
-          href="javascript:;"
           class="btn btn-primary btn-round"
-          (click)="onDeleteTeamMember(member.teams_id)"
+          (click)="onDeleteTeamMember(member.teamsId)"
           >Delete</a
         >
       </div>
     </div>
   </div>
-</div>
-<div class="col-md-4">
-  <div class="card card-profile">
-    <div class="card-avatar">
-      <a href="javascript:;">
-        <img
-          class="img"
-          src="https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/512x512/person.png"
-        />
-      </a>
-    </div>
-    <div class="card-body">
-      <h6 class="card-category text-gray">CEO / Co-Founder</h6>
-      <h4 class="card-title">Alec Thompson</h4>
-      <p class="card-description">
-        Don't be scared of the truth because we need to restart the human
-        foundation in truth And I love you like Kanye loves Kanye I love Rick
-        Owens’ bed design but the back is...
-      </p>
-      <a href="javascript:;" class="btn btn-primary btn-round">Edit</a>
-      <a href="javascript:;" class="btn btn-primary btn-round">Delete</a>
+  <div class="col-md-4">
+    <div class="card card-profile">
+      <div class="card-avatar">
+        <a href="javascript:;">
+          <img
+            class="img"
+            src="https://www.balcomagency.com/sites/default/files/Lola-in-studio-test-shot.jpg"
+          />
+        </a>
+      </div>
+      <div class="card-body">
+        <h6 class="card-category text-gray">&nbsp;</h6>
+        <h4 class="card-title">Add a member</h4>
+        <p class="card-description">&nbsp;</p>
+        <a class="btn btn-primary btn-round" routerLink="add">Add</a>
+      </div>
     </div>
   </div>
 </div>

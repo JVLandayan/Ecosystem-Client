@@ -9,12 +9,14 @@ import { AdminService } from 'src/app/shared/services/admin.service';
 })
 export class TeamsListComponent implements OnInit {
   constructor(private adminService: AdminService) {}
-  teams_list: Teams[] = [];
+  teams_list = [];
+  photoUrl = this.adminService.photoUrl;
 
   ngOnInit(): void {
     this.adminService.GET_teams_list().subscribe(
       (data) => {
         this.teams_list = data;
+        console.log(this.teams_list);
       },
       (error) => {
         console.log(error);
@@ -23,8 +25,11 @@ export class TeamsListComponent implements OnInit {
   }
 
   onDeleteTeamMember(id) {
-    this.adminService.DELETE_teams_member(id).subscribe(() => {
-      this.ngOnInit();
-    });
+    var f = confirm('Confirm Delete?');
+    if (f == true) {
+      this.adminService.DELETE_teams_member(id).subscribe(() => {
+        this.ngOnInit();
+      });
+    }
   }
 }

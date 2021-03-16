@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AdminService } from 'src/app/shared/services/admin.service';
 
 @Component({
@@ -11,14 +11,35 @@ import { AdminService } from 'src/app/shared/services/admin.service';
 export class MerchandiseUpdateComponent implements OnInit {
   constructor(
     private adminService: AdminService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
   form: FormGroup;
   id: number;
   imageSrc: string;
   selectedFile: File = null;
+  input_item_name;
+  input_item_link;
+  input_item_details;
+  imgSrc;
+  PhotoFileName: string;
+  PhotoFilePath: string;
+  input_image;
+  imgLoaded = false;
 
   ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+    this.adminService.GET_merch(this.id).subscribe(
+      (data) => {
+        this.input_item_name = data.merchName;
+        this.input_item_link = data.merchLink;
+        this.input_item_details = data.merchDetails;
+        this.input_image = data.merchImage;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
     this.form = new FormGroup({
       image: new FormControl(null, { validators: [Validators.required] }),
       item_name: new FormControl(null, { validators: [Validators.required] }),
@@ -27,14 +48,10 @@ export class MerchandiseUpdateComponent implements OnInit {
         validators: [Validators.required],
       }),
     });
-
-    this.id = this.route.snapshot.params['id'];
-    this.adminService.GET_merch(this.id).subscribe(
-      (data) => {},
-      (error) => {
-        console.log(error);
-      }
-    );
+    setTimeout(() => {
+      this.imgSrc = this.adminService.photoUrl + this.input_image;
+      this.imgLoaded = true;
+    }, 1000);
   }
 
   onImageSelected(event) {
@@ -50,19 +67,58 @@ export class MerchandiseUpdateComponent implements OnInit {
         });
       };
     }
+    const formData: FormData = new FormData();
+    formData.append('uploadedFile', this.selectedFile, this.selectedFile.name);
+    formData.append('extn', this.selectedFile.name.split('.').pop());
+    console.log(this.selectedFile.name.split('.').pop().toLowerCase());
+
+    this.adminService.UploadPhotoAccount(formData).subscribe((data: any) => {
+      this.PhotoFileName = data.toString();
+      this.PhotoFilePath = this.adminService.photoUrl + this.PhotoFileName;
+    });
   }
 
   onSubmit(f: NgForm) {
-    const userData = new FormData();
-    userData.append('image', this.selectedFile, this.selectedFile.name);
-    userData.append('item_name', f.value.item_name);
-    userData.append('item_link', f.value.item_link);
-    userData.append('item_details', f.value.item_details);
-
     //Data being posted = formData
-    this.adminService
-      .UPDATE_merch(userData, this.route.snapshot.params['id'])
-      .subscribe(
+    const f_item_name: string = f.value.item_name;
+    const f_item_details: string = f.value.item_details;
+    const f_item_link: string = f.value.item_link;
+    const f_email: string = f.value.ust_email;
+
+    var form_payload = [];
+    if (f_item_name != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/merchName',
+        value: f_item_name,
+      });
+    }
+    if (f_item_details != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/merchDetails',
+        value: f_item_details,
+      });
+    }
+    if (f_item_link != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/merchLink',
+        value: f_item_link,
+      });
+    }
+    if (this.PhotoFileName != null) {
+      form_payload.push({
+        op: 'replace',
+        path: '/merchImage',
+        value: this.PhotoFileName,
+      });
+    }
+
+    var conf = confirm('Are you sure with the update?');
+
+    if (conf == true) {
+      this.adminService.UPDATE_merch(form_payload, this.id).subscribe(
         (event) => {
           console.log(event);
         },
@@ -70,6 +126,8 @@ export class MerchandiseUpdateComponent implements OnInit {
           console.log(error);
         }
       );
-    this.form.reset();
+      this.router.navigate(['authpanel', 'merchandise']);
+      alert('Merchandise Updated Successfully');
+    }
   }
 }

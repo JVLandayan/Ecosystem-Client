@@ -9,13 +9,26 @@
         <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
           <div class="row">
             <div class="col-md-4">
+              <img
+                *ngIf="PhotoFileName != null"
+                [src]="PhotoFilePath"
+                alt=""
+                srcset=""
+                height="300px"
+                width="300px"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
               <div class="custom-file">
                 <input
                   type="file"
-                  formControlName="image"
+                  formControlName="MerchImage"
                   id="image"
                   class="form-control"
                   (change)="onImageSelected($event)"
+                  accept="image/*"
                 />
               </div>
             </div>
@@ -26,7 +39,7 @@
                 <label class="bmd-label-floating">Item Name</label>
                 <input
                   type="text"
-                  formControlName="item_name"
+                  formControlName="MerchName"
                   class="form-control"
                 />
               </div>
@@ -36,7 +49,7 @@
                 <label class="bmd-label-floating">Merchandise Link</label>
                 <input
                   type="text"
-                  formControlName="item_link"
+                  formControlName="MerchLink"
                   class="form-control"
                 />
               </div>
@@ -48,7 +61,7 @@
                 <label class="bmd-label-floating">Item details</label>
                 <input
                   type="text"
-                  formControlName="item_details"
+                  formControlName="MerchDetails"
                   class="form-control"
                 />
               </div>

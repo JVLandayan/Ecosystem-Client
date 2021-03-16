@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Merchandise } from 'src/app/shared/models/merchandise.model';
 import { LandingService } from 'src/app/shared/services/landing.service';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-merchandise',
@@ -9,6 +10,7 @@ import { LandingService } from 'src/app/shared/services/landing.service';
 })
 export class MerchandiseComponent implements OnInit {
   merch_list: Merchandise[];
+  apiImgUrl = environment.apiphotoURl;
 
   constructor(private landingService: LandingService) {
     this.landingService.FETCH_merchandise().subscribe((merchdata) => {

@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12" *ngIf="isLoaded">
     <div class="card">
       <div class="card-header card-header-primary">
         <h4 class="card-title">Update Account</h4>
@@ -7,6 +7,25 @@
       </div>
       <div class="card-body">
         <form [formGroup]="form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+          <div class="row" *ngIf="imgLoaded">
+            <div class="col-md-4">
+              <img
+                *ngIf="this.imageSrc == null"
+                [src]="imgSrc"
+                alt=""
+                srcset=""
+                height="300px"
+                width="300px"
+              />
+              <img
+                [src]="this.imageSrc"
+                alt=""
+                srcset=""
+                height="300px"
+                width="300px"
+              />
+            </div>
+          </div>
           <div class="row">
             <div class="col-md-4">
               <div class="custom-file">
@@ -28,6 +47,7 @@
                   type="text"
                   class="form-control"
                   formControlName="last_name"
+                  [(ngModel)]="inputLast"
                 />
               </div>
             </div>
@@ -38,6 +58,7 @@
                   type="text"
                   class="form-control"
                   formControlName="first_name"
+                  [ngModel]="inputFirst"
                 />
               </div>
             </div>
@@ -49,6 +70,7 @@
                   class="form-control"
                   formControlName="middle_name"
                   id="name_middle"
+                  [ngModel]="inputMiddle"
                 />
               </div>
             </div>
@@ -61,6 +83,7 @@
                   type="email"
                   class="form-control"
                   formControlName="ust_email"
+                  [ngModel]="inputEmail"
                 />
               </div>
             </div>
