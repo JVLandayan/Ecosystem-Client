@@ -42,23 +42,14 @@
           <div class="row">
             <div class="col-md-4">
               <div class="form-group">
-                <label class="bmd-label-floating">Last Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  formControlName="last_name"
-                  [(ngModel)]="inputLast"
-                />
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="form-group">
                 <label class="bmd-label-floating">First Name</label>
                 <input
                   type="text"
                   class="form-control"
                   formControlName="first_name"
                   [ngModel]="inputFirst"
+                  onkeypress="return (event.charCode > 64 &&
+event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
                 />
               </div>
             </div>
@@ -71,6 +62,21 @@
                   formControlName="middle_name"
                   id="name_middle"
                   [ngModel]="inputMiddle"
+                  onkeypress="return (event.charCode > 64 &&
+event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label class="bmd-label-floating">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="last_name"
+                  [(ngModel)]="inputLast"
+                  onkeypress="return (event.charCode > 64 &&
+event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
                 />
               </div>
             </div>
@@ -88,7 +94,11 @@
               </div>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary pull-right">
+          <button
+            type="submit"
+            [disabled]="f.invalid"
+            class="btn btn-primary pull-right"
+          >
             Submit
           </button>
           <div class="clearfix"></div>

@@ -47,7 +47,7 @@ export class AccountsUpdateComponent implements OnInit {
     });
     this.form = new FormGroup({
       image: new FormControl(null, {
-        validators: [Validators.required],
+        validators: [],
       }),
       last_name: new FormControl(null, {
         validators: [Validators.required],

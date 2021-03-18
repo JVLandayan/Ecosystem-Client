@@ -43,7 +43,7 @@
                       <p class="text-center back-paragraph">
                         {{
                           teamdata.teamsDetails +
-                            "fasdlfhsjdl lorem ipsum dolor "
+                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"
                         }}
                       </p>
                     </div>
@@ -51,19 +51,19 @@
                   <div class="footer-imagia">
                     <div class="social-imagia text-center">
                       <a
-                        [href]="'https://' + teamdata.teamsFacebook"
+                        [href]="teamdata.teamsFacebook"
                         target="_blank"
                         *ngIf="teamdata.teamsFacebook == null ? false : true"
                         ><i class="fa fa-facebook"></i
                       ></a>
                       <a
-                        [href]="'https://' + teamdata.teamsInstagram"
+                        [href]="teamdata.teamsInstagram"
                         target="_blank"
                         *ngIf="teamdata.teamsInstagram == null ? false : true"
-                        ><i class="fa fa-linkedin"></i
+                        ><i class="fa fa-instagram"></i
                       ></a>
                       <a
-                        [href]="'https://' + teamdata.teamsTwitter"
+                        [href]="teamdata.teamsTwitter"
                         target="_blank"
                         *ngIf="teamdata.teamsTwitter == null ? false : true"
                         ><i class="fa fa-twitter"></i

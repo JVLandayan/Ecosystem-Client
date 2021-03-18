@@ -26,6 +26,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   currentUser = this.authService.currentUserValue;
   apiUrl = environment.apiUrl;
+  isForgotPassSubmitted = false;
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -52,7 +53,8 @@ export class LoginComponent implements OnInit {
     this.login = !this.login;
   }
 
-  onSubmit_email(f: NgForm) {
+  onSubmit_email(f: NgForm, submitBtn: HTMLButtonElement) {
+    submitBtn.disabled = true;
     const form_payload = {
       email: f.value.forgot_email,
     };
@@ -61,6 +63,7 @@ export class LoginComponent implements OnInit {
       () => {
         alert('A password reset link has been sent to your email');
         this.form_email.reset();
+        submitBtn.disabled = false;
       },
       (error) => {
         alert(error);

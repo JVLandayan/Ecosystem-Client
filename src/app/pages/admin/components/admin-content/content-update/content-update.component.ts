@@ -42,7 +42,7 @@ export class ContentUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      post_image: new FormControl(null, { validators: [Validators.required] }),
+      post_image: new FormControl(null, { validators: [] }),
       post_title: new FormControl(null, { validators: [Validators.required] }),
       post_intro: new FormControl(null, { validators: [Validators.required] }),
       post_content: new FormControl(null, {
@@ -59,7 +59,6 @@ export class ContentUpdateComponent implements OnInit {
     });
     setTimeout(() => {
       this.imgSrc = this.adminService.photoUrl + this.inputImage;
-      console.log(this.imgSrc);
       this.isLoaded = true;
     }, 1000);
   }

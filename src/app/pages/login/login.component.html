@@ -58,20 +58,24 @@
         <form
           [formGroup]="form_email"
           #f_email="ngForm"
-          (ngSubmit)="onSubmit_email(f_email)"
+          (ngSubmit)="onSubmit_email(f_email, submitBtn)"
         >
           <div class="form-group">
             <label class="text-secondary">Email</label
             ><input
               class="form-control"
-              type="text"
+              type="email"
               required=""
-              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"
               inputmode="email"
               formControlName="forgot_email"
             />
           </div>
-          <button class="btn btn-info mt-2 bg-warning btn-grou" type="submit">
+          <button
+            class="btn btn-info mt-2 bg-warning btn-grou"
+            [disabled]="f.invalid"
+            type="submit"
+            #submitBtn
+          >
             Submit
           </button>
         </form>

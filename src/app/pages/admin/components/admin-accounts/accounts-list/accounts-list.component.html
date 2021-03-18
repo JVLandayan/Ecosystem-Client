@@ -29,7 +29,7 @@
                 <td>{{ accounts.middleName }}</td>
                 <td>{{ accounts.lastName }}</td>
                 <td>{{ accounts.email }}</td>
-                <td class="td-actions text-right" *ngIf="accounts.authId != 1">
+                <td class="td-actions text-right">
                   <button
                     type="button"
                     rel="tooltip"
@@ -47,7 +47,9 @@
                     data-original-title="Edit Task"
                     (click)="onDeleteAccount(accounts.id)"
                   >
-                    <i class="material-icons">close</i>
+                    <i class="material-icons" *ngIf="accounts.authId != 1"
+                      >close</i
+                    >
                     <div class="ripple-container"></div>
                   </button>
                 </td>

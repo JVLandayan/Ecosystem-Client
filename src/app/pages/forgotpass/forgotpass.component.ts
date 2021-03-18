@@ -41,12 +41,10 @@ export class ForgotpassComponent implements OnInit {
       Email: this.email,
       NewPassword: f.value.new_password,
     };
-
-    console.log(form_payload);
     this.http.post(this.apiUrl + 'auth/ResetPassword', form_payload).subscribe(
       (data) => {
-        alert('Password Reset Successfully');
-        this.router.navigate(['authpanel', 'teams']);
+        alert(data);
+        this.router.navigate(['login']);
       },
       (error) => {
         alert(error);

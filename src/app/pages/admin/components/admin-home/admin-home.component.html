@@ -14,19 +14,19 @@
               class="card-avatar"
               style="max-width: 250px; max-height: 250px"
             >
-              <div class="image-upload" *ngIf="Editmode == false">
+              <div class="image-upload" *ngIf="EditmodeImage == false">
                 <img
                   class="img"
                   style="height: 250px; width: 250px"
                   [src]="photoApiUrl + this.user.photoFileName"
                 />
               </div>
-              <div class="image-upload" *ngIf="Editmode == true">
+              <div class="image-upload" *ngIf="EditmodeImage == true">
                 <label for="file-input">
                   <img
                     *ngIf="this.imageSrc == null"
                     class="img imageHover"
-                    style="height: 250px; width: 250px"
+                    style="height: 250px; width: 250px; z-index: 1"
                     [src]="photoApiUrl + this.user.photoFileName"
                   />
                   <img
@@ -103,7 +103,7 @@
                   </div>
                 </div>
               </div>
-              <div class="row" *ngIf="Editmode">
+              <div class="row" *ngIf="Editmodepass">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="bmd-label-floating">New Password</label>
@@ -128,11 +128,30 @@
                   </div>
                 </div>
               </div>
+
               <button
                 type="button"
-                (click)="switchModes()"
+                (click)="exitEdit()"
+                class="btn btn-primary pull-left"
+                *ngIf="EditmodeImage == true || Editmodepass == true"
+              >
+                Exit
+              </button>
+
+              <button
+                type="button"
+                (click)="switchModeChangePass()"
+                class="btn btn-primary pull-left"
+                *ngIf="EditmodeImage == false && Editmodepass == false"
+              >
+                Change Password
+              </button>
+
+              <button
+                type="button"
+                (click)="switchModeEditProfile()"
                 class="btn btn-primary pull-right"
-                *ngIf="Editmode == false"
+                *ngIf="EditmodeImage == false && Editmodepass == false"
               >
                 Edit Profile
               </button>
@@ -140,14 +159,27 @@
               <button
                 type="submit"
                 class="btn btn-primary pull-right"
-                *ngIf="Editmode == true"
+                *ngIf="Editmodepass == true"
+                [disabled]="
+                  f.value.password_new != f.value.password_new_confirm
+                "
               >
-                Update Profile
+                Submit
+              </button>
+
+              <button
+                type="submit"
+                class="btn btn-primary pull-right"
+                *ngIf="EditmodeImage == true"
+                [disabled]="this.imageSrc == null"
+              >
+                Submit
               </button>
               <span
+                style="text-align: left !important"
                 *ngIf="
-                  f.value.password_new_confirm != f.value.password_new ||
-                  form.hasError('whitespace')
+                  f.value.password_new != f.value.password_new_confirm &&
+                  Editmodepass == true
                 "
                 >Password Does Not Match</span
               >

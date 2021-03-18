@@ -16,6 +16,7 @@ export class AccountsAddComponent implements OnInit {
   selectedFile: File = null;
   PhotoFileName: string;
   PhotoFilePath: string;
+  isAdded = false;
 
   constructor(private adminService: AdminService, private router: Router) {}
   ngOnInit(): void {
@@ -74,12 +75,16 @@ export class AccountsAddComponent implements OnInit {
 
     if (conf == true) {
       this.adminService.POST_account(form_payload).subscribe(
-        () => {},
+        () => {
+          this.isAdded = true;
+        },
         (error) => {
-          console.log(error);
+          alert(error);
         }
       );
-      alert('Successfully Added');
+    }
+    if (this.isAdded == true) {
+      alert('Account Added');
       this.router.navigate(['authpanel', 'accounts']);
     }
   }

@@ -15,6 +15,7 @@ export class TeamsAddComponent implements OnInit {
   selectedFile: File = null;
   PhotoFileName: string;
   PhotoFilePath: string;
+  urlValid = false;
 
   constructor(private adminService: AdminService, private router: Router) {}
 
@@ -36,6 +37,10 @@ export class TeamsAddComponent implements OnInit {
         validators: [],
       }),
     });
+  }
+
+  get formControls() {
+    return this.form.controls;
   }
 
   onImageSelected(event) {

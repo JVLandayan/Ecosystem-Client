@@ -1,4 +1,5 @@
 import { NgIf } from '@angular/common';
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user.model';
@@ -20,12 +21,29 @@ export class AdminHomeComponent implements OnInit {
   user: Useraccount;
   currentUser: User = this.authService.currentUserValue;
   photoApiUrl = environment.apiphotoURl;
-  Editmode = false;
+
   form: FormGroup;
   imageSrc: string;
   selectedFile: File = null;
   PhotoFileName: string;
   PhotoFilePath: string;
+
+  //edit modes
+  EditmodeImage = false;
+  Editmodepass = false;
+  switchModeEditProfile() {
+    this.EditmodeImage = !this.EditmodeImage;
+  }
+
+  switchModeChangePass() {
+    this.Editmodepass = !this.Editmodepass;
+  }
+
+  exitEdit() {
+    this.EditmodeImage = false;
+    this.Editmodepass = false;
+    this.ngOnInit;
+  }
 
   ngOnInit(): void {
     this.adminService.GET_account(this.currentUser.id).subscribe((data) => {
@@ -70,16 +88,6 @@ export class AdminHomeComponent implements OnInit {
     });
   }
 
-  switchModes() {
-    this.Editmode = !this.Editmode;
-  }
-
-  public noWhitespaceValidator(control: FormControl) {
-    const isWhitespace = (control.value || '').trim().length === 0;
-    const isValid = !isWhitespace;
-    return isValid ? null : { whitespace: true };
-  }
-
   onSubmit(f: NgForm) {
     const form_payload = [];
     if (
@@ -105,13 +113,16 @@ export class AdminHomeComponent implements OnInit {
       .UPDATE_account(form_payload, this.currentUser.id)
       .subscribe(
         (data) => {
-          alert('Password has been updated successfully');
-          this.Editmode = !this.Editmode;
-          this.ngOnInit();
+          if (this.EditmodeImage) {
+            alert('Profile Updated Successfully');
+          } else {
+            alert('Password Updated Successfully');
+          }
         },
         (error) => {
           console.log(error);
         }
       );
+    this.exitEdit();
   }
 }
