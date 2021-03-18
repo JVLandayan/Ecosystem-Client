@@ -3,12 +3,10 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 @Component({
   selector: 'app-landing',
   templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.css']
+  styleUrls: ['./landing.component.css'],
 })
 export class LandingComponent implements OnInit {
-
-  constructor(private renderer:Renderer2) { }
-
+  constructor(private renderer: Renderer2) {}
 
   addJsToElement(src: string): HTMLScriptElement {
     const script = document.createElement('script');
@@ -19,12 +17,14 @@ export class LandingComponent implements OnInit {
   }
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.addJsToElement(
-      '../../../assets/js/script.js'
-    ).onload = (teste) => {
+    this.addJsToElement('../../../assets/js/script.js').onload = (teste) => {
       console.log(teste);
       console.log();
     };
+    this.addJsToElement('../../../assets/js/subscription.js').onload = (
+      teste
+    ) => {
+      console.log(teste);
+    };
   }
-
 }

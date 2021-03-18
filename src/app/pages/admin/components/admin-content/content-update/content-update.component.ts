@@ -94,6 +94,7 @@ export class ContentUpdateComponent implements OnInit {
     const f_postName: string = f.value.post_title;
     const f_content: string = f.value.post_content;
     const f_intro: string = f.value.post_intro;
+    const content_payload = f_content == null ? this.RTEinitial : f_content;
     if (this.PhotoFileName == null) {
       this.form_image = this.inputImage;
     } else {
@@ -101,13 +102,13 @@ export class ContentUpdateComponent implements OnInit {
     }
 
     const form_payload = {
-      content: this.RTEinitial,
+      content: content_payload,
       image: this.form_image,
       contentIntro: f_intro,
       name: f_postName,
     };
-    var conf = confirm('Are you sure with the update?');
 
+    var conf = confirm('Are you sure with the update?');
     if (conf == true) {
       this.adminService.PUT_content(form_payload, this.id).subscribe(
         (event) => {

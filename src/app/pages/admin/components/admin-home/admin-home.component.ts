@@ -113,16 +113,15 @@ export class AdminHomeComponent implements OnInit {
       .UPDATE_account(form_payload, this.currentUser.id)
       .subscribe(
         (data) => {
-          if (this.EditmodeImage) {
-            alert('Profile Updated Successfully');
-          } else {
-            alert('Password Updated Successfully');
-          }
+          alert('Successfully Updated');
+          this.ngOnInit();
         },
         (error) => {
-          console.log(error);
+          alert('It seems like something happened');
+          this.ngOnInit();
         }
       );
+
     this.exitEdit();
   }
 }
