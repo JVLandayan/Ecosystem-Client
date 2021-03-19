@@ -26,9 +26,19 @@
               type="password"
               formControlName="confirm_new_password"
             />
+            <span
+              style="color: black"
+              *ngIf="f.value.confirm_new_password != f.value.new_password"
+              >Password doesn't match</span
+            >
           </div>
-          <button class="btn btn-info mt-2 bg-warning" type="submit">
-            Log In
+
+          <button
+            class="btn btn-info mt-2 bg-warning"
+            type="submit"
+            [disabled]="f.value.confirm_new_password != f.value.new_password"
+          >
+            Submit
           </button>
         </form>
       </div>
