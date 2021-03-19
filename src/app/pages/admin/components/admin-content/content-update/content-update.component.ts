@@ -90,6 +90,7 @@ export class ContentUpdateComponent implements OnInit {
       this.PhotoFilePath = this.adminService.photoUrl + this.PhotoFileName;
     });
   }
+
   onSubmit(f: NgForm) {
     const f_postName: string = f.value.post_title;
     const f_content: string = f.value.post_content;
