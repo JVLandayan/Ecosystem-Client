@@ -32,7 +32,7 @@ import { ArticleListComponent } from './pages/articlespage/article-list/article-
 import { NgxPaginationModule } from 'ngx-pagination';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ArticlespageComponent } from './pages/articlespage/articlespage.component';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AdminMerchandiseComponent } from './pages/admin/components/admin-merchandise/admin-merchandise.component';
 import { MerchandiseAddComponent } from './pages/admin/components/admin-merchandise/merchandise-add/merchandise-add.component';
 import { MerchandiseUpdateComponent } from './pages/admin/components/admin-merchandise/merchandise-update/merchandise-update.component';
@@ -45,7 +45,7 @@ import { AuthInterceptor } from '../app/shared/helpers/auth.interceptor';
 import { ErrorInterceptor } from '../app/shared/helpers/error.interceptor';
 import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
 import { AdminHomeComponent } from './pages/admin/components/admin-home/admin-home.component';
-
+import { ArticlePageComponent } from './pages/articlespage/article-page/article-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -84,6 +84,7 @@ import { AdminHomeComponent } from './pages/admin/components/admin-home/admin-ho
     ContentUpdateComponent,
     ForgotpassComponent,
     AdminHomeComponent,
+    ArticlePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -94,6 +95,7 @@ import { AdminHomeComponent } from './pages/admin/components/admin-home/admin-ho
     HttpClientModule,
     EditorModule,
     ReactiveFormsModule,
+    CommonModule,
   ],
   providers: [
     DatePipe,

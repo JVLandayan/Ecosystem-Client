@@ -21,10 +21,5 @@ export class LandingComponent implements OnInit {
       console.log(teste);
       console.log();
     };
-    this.addJsToElement('../../../assets/js/subscription.js').onload = (
-      teste
-    ) => {
-      console.log(teste);
-    };
   }
 }

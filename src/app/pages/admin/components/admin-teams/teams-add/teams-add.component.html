@@ -19,7 +19,9 @@
             <div class="col-md-4">
               <span>
                 {{
-                  f.value.image == null ? "Profile Picture *Required" : ""
+                  f.value.image == null
+                    ? "Profile Picture *Required(Preferably 1:1 aspect ratio of photo"
+                    : ""
                 }}</span
               >
               <div class="custom-file">
@@ -85,7 +87,7 @@
                     type="text"
                     formControlName="teams_detail"
                     class="form-control"
-                    minlength="20"
+                    minlength="40"
                     maxlength="200"
                   />
                 </div>

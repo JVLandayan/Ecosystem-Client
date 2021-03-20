@@ -5,6 +5,7 @@ export interface Articles {
   name: string;
   dateofPublish: string;
   image: string;
+  authorId: number;
   content: any;
   contentIntro: string;
 }

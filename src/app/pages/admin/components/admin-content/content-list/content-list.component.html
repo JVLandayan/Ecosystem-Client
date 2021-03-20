@@ -50,6 +50,10 @@
               </tr>
             </tbody>
           </table>
+          <pagination-controls
+            class="pagination"
+            (pageChange)="pageNum = $event"
+          ></pagination-controls>
           <a routerLink="add" class="btn btn-primary btn-round">Add Content</a>
         </div>
       </div>

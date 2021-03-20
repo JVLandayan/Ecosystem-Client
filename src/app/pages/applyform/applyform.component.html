@@ -11,15 +11,19 @@
         alt=""
       />
     </div>
-    <form autocomplete="off" method="POST" name="google-sheet" #f="ngForm">
+    <form
+      [formGroup]="form"
+      #f="ngForm"
+      (ngSubmit)="onSubmit(f)"
+      name="google-sheet"
+    >
       <h3 style="color: black">Registration Form</h3>
       <div class="form-wrapper">
         <input
           type="text"
-          required
           placeholder="Last Name"
           name="LastName"
-          ngModel
+          formControlName="last_name"
           class="form-control"
         />
         <i class="zmdi zmdi-account"></i>
@@ -27,10 +31,9 @@
       <div class="form-wrapper">
         <input
           type="text"
-          required
           placeholder="First Name"
           name="FirstName"
-          ngModel
+          formControlName="first_name"
           class="form-control"
         />
         <i class="zmdi zmdi-account"></i>
@@ -38,10 +41,9 @@
       <div class="form-wrapper">
         <input
           type="text"
-          required
           placeholder="Middle Name"
           name="MiddleName"
-          ngModel
+          formControlName="middle_name"
           class="form-control"
         />
         <i class="zmdi zmdi-account"></i>
@@ -49,10 +51,9 @@
       <div class="form-wrapper">
         <input
           type="number"
-          required
           placeholder="Student Number"
           name="StudentNumber"
-          ngModel
+          formControlName="student_number"
           class="form-control"
         />
         <i class="zmdi zmdi-account"></i>
@@ -60,24 +61,24 @@
       <div class="form-wrapper">
         <input
           type="email"
-          email
-          required
           placeholder="UST Email"
           name="UstEmail"
-          ngModel
+          formControlName="ust_email"
           class="form-control"
         />
         <i class="zmdi zmdi-email"></i>
       </div>
+      <span style="color: black !important; font-size: 14px"
+        >Click the box below to choose your role</span
+      >
       <div class="form-wrapper">
-        <select name="Role" id="" required ngModel class="form-control">
-          <option value="" disabled selected>Sex</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
+        <select name="Role" formControlName="role" class="form-control">
+          <option value="Member" selected>Member</option>
+          <option value="Officer">Officer</option>
         </select>
         <i class="zmdi zmdi-caret-down" style="font-size: 17px"></i>
       </div>
-      <button [disabled]="f.invalid" type="submit" (click)="reloadComponent()">
+      <button [disabled]="f.invalid || isSubmitted" type="submit">
         Submit
       </button>
     </form>

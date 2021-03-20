@@ -93,6 +93,7 @@ export class ContentAddComponent implements OnInit {
       AuthorImg: this.currentUser.photoFileName,
       DateofPublish: 'abc',
       ContentIntro: f_intro,
+      AuthorId: this.currentUser.id,
     };
 
     //Data being posted = formData

@@ -6,6 +6,7 @@ import { Teams } from '../models/teams.model';
 import { environment } from '../../../environments/environment';
 import { Observable } from 'tinymce';
 import { Articles } from '../models/articles.model';
+import { Author } from '../models/author.model';
 
 @Injectable({
   providedIn: 'root',
@@ -29,5 +30,9 @@ export class LandingService {
 
   FETCH_article(id) {
     return this.http.get<Articles>(environment.apiUrl + 'articles/' + id);
+  }
+
+  FETCH_articleAuthor(id) {
+    return this.http.get<Author>(environment.apiUrl + 'accounts/author/' + id);
   }
 }
