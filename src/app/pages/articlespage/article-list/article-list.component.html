@@ -12,7 +12,7 @@
     <div
       class="item mb-5"
       *ngFor="
-        let article of blogContent
+        let article of blogContent.reverse()
           | paginate: { itemsPerPage: 6, currentPage: pageNum }
       "
     >

@@ -19,7 +19,7 @@
                   <div class="cover-imagia">
                     <img alt="" [src]="photoUrl + 'ecotigers_header.jpg'" />
                   </div>
-                  <div class="user-imagia">
+                  <div class="user-imagia" style="width: 180px; height: 180px">
                     <img
                       class="img-circle"
                       alt=""
@@ -41,10 +41,7 @@
                         {{ teamdata.teamsRole }}
                       </h3>
                       <p class="text-center back-paragraph">
-                        {{
-                          teamdata.teamsDetails +
-                            "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;"
-                        }}
+                        {{ teamdata.teamsDetails }}
                       </p>
                     </div>
                   </div>

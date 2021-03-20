@@ -8,6 +8,7 @@ import { AdminService } from 'src/app/shared/services/admin.service';
 })
 export class ContentListComponent implements OnInit {
   content_list = [];
+  pageNum = 1;
 
   constructor(private adminService: AdminService) {}
 

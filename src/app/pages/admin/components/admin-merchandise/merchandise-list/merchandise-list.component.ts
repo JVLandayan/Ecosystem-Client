@@ -11,6 +11,7 @@ export class MerchandiseListComponent implements OnInit {
   constructor(private adminService: AdminService) {}
 
   merch_list = [];
+  pageNum = 1;
 
   ngOnInit(): void {
     this.adminService.GET_merchs().subscribe((res) => {

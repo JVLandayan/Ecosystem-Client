@@ -48,8 +48,7 @@
                   class="form-control"
                   formControlName="first_name"
                   [ngModel]="inputFirst"
-                  onkeypress="return (event.charCode > 64 &&
-event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
+                  pattern="[a-zA-Z\s]+"
                 />
               </div>
             </div>
@@ -62,8 +61,7 @@ event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
                   formControlName="middle_name"
                   id="name_middle"
                   [ngModel]="inputMiddle"
-                  onkeypress="return (event.charCode > 64 &&
-event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
+                  pattern="[a-zA-Z\s]+"
                 />
               </div>
             </div>
@@ -75,8 +73,7 @@ event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
                   class="form-control"
                   formControlName="last_name"
                   [(ngModel)]="inputLast"
-                  onkeypress="return (event.charCode > 64 &&
-event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
+                  pattern="[a-zA-Z\s]+"
                 />
               </div>
             </div>
@@ -90,6 +87,7 @@ event.charCode < 91) || (event.charCode > 96 && event.charCode < 123)"
                   class="form-control"
                   formControlName="ust_email"
                   [ngModel]="inputEmail"
+                  pattern=".+@ust.edu.ph"
                 />
               </div>
             </div>

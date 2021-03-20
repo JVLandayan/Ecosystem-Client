@@ -15,7 +15,12 @@
               <th>Date Added</th>
             </thead>
             <tbody>
-              <tr *ngFor="let content of content_list">
+              <tr
+                *ngFor="
+                  let content of content_list
+                    | paginate: { itemsPerPage: 10, currentPage: pageNum }
+                "
+              >
                 <td>{{ content.id }}</td>
                 <td>{{ content.name }}</td>
                 <td>{{ content.authorName | uppercase }}</td>

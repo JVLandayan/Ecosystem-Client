@@ -15,7 +15,12 @@
               <th>Merchandise Link</th>
             </thead>
             <tbody>
-              <tr *ngFor="let merchs of merch_list">
+              <tr
+                *ngFor="
+                  let merchs of merch_list
+                    | paginate: { itemsPerPage: 10, currentPage: pageNum }
+                "
+              >
                 <td>{{ merchs.merchId }}</td>
                 <td>{{ merchs.merchName }}</td>
                 <td>{{ merchs.merchDetails }}</td>

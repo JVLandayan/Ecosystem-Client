@@ -5,6 +5,7 @@ const scriptURL = 'https://script.google.com/macros/s/AKfycbxJF3xtDeVf_uwnz_8hrU
               e.preventDefault()
               fetch(scriptURL, { method: 'POST', body: new FormData(form) })
                 .then(response => alert("Submission was received", response))
-                .catch(error => console.error('Error!', error.message))
+                .catch(error => console.error('Error!', error.message)),
+                window.location.reload()
             })
             console.log(FormData)

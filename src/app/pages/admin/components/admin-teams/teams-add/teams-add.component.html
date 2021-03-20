@@ -38,14 +38,15 @@
             <div class="col-md-12">
               <div class="form-group">
                 <label class="bmd-label-floating"
-                  >Name
+                  >Name (Fn Ln)
                   {{ f.value.teams_name == null ? "*Required" : "" }}</label
                 >
                 <input
                   type="text"
                   formControlName="teams_name"
                   class="form-control"
-                  maxlength="50"
+                  maxlength="40"
+                  pattern="[a-zA-Z\s]+"
                 />
               </div>
             </div>
@@ -62,7 +63,7 @@
                     type="text"
                     formControlName="teams_role"
                     class="form-control"
-                    maxlength="30"
+                    maxlength="18"
                   />
                 </div>
               </div>

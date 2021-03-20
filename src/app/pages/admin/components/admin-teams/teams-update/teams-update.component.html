@@ -48,7 +48,8 @@
                   formControlName="teams_name"
                   class="form-control"
                   [(ngModel)]="inputName"
-                  maxlength="50"
+                  maxlength="40"
+                  pattern="[a-zA-Z\s]+"
                 />
               </div>
             </div>
@@ -63,7 +64,7 @@
                     formControlName="teams_role"
                     class="form-control"
                     [(ngModel)]="inputRole"
-                    maxlength="30"
+                    maxlength="18"
                   />
                 </div>
               </div>

@@ -113,6 +113,7 @@
                       class="form-control"
                       formControlName="password_new"
                       autocomplete="false"
+                      minlength="4"
                     />
                   </div>
                 </div>
@@ -124,6 +125,7 @@
                       type="password"
                       class="form-control"
                       formControlName="password_new_confirm"
+                      minlength="4"
                     />
                   </div>
                 </div>
@@ -161,7 +163,9 @@
                 class="btn btn-primary pull-right"
                 *ngIf="Editmodepass == true"
                 [disabled]="
-                  f.value.password_new != f.value.password_new_confirm
+                  f.value.password_new != f.value.password_new_confirm ||
+                  form.get('password_new').invalid ||
+                  form.get('password_new_confirm').invalid
                 "
               >
                 Submit

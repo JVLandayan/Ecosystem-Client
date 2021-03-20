@@ -7,21 +7,24 @@
         method="post"
         autocomplete="off"
         name="google-sheet"
+        [formGroup]="form"
+        #f="ngForm"
       >
         <input
           autocomplete="off"
           class="subscribe-css-email-field"
           placeholder="Enter your Email"
-          type="text"
+          type="email"
           name="Email"
+          
         /><input
           class="subscribe-css-email-button"
           title=""
           type="submit"
           value="submit"
           name="submit"
-          value="Login"
-          (click)="ngOnInit()"
+          value="Submit"
+          [disabled]="f.invalid"
         />
       </form>
     </div>
