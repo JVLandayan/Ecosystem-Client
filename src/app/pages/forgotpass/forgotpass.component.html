@@ -36,7 +36,9 @@
           <button
             class="btn btn-info mt-2 bg-warning"
             type="submit"
-            [disabled]="f.value.confirm_new_password != f.value.new_password"
+            [disabled]="
+              f.value.confirm_new_password != f.value.new_password || f.invalid
+            "
           >
             Submit
           </button>

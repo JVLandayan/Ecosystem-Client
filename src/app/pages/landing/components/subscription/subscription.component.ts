@@ -28,6 +28,7 @@ export class SubscriptionComponent implements OnInit {
       alert('Thanks for subscribing');
       this.form.reset();
       this.isSubmitted = false;
+      window.location.href = '#page-top';
     });
   }
 }

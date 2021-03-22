@@ -43,7 +43,7 @@ export class ForgotpassComponent implements OnInit {
     };
     this.http.post(this.apiUrl + 'auth/ResetPassword', form_payload).subscribe(
       (data) => {
-        alert(data);
+        alert('Password Updated');
         this.router.navigate(['login']);
       },
       (error) => {

@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-applyform',
   templateUrl: './applyform.component.html',
-  styleUrls: ['./applyform.component.scss'],
+  styleUrls: ['./applyform.component.css'],
 })
 export class ApplyformComponent implements OnInit {
   constructor(private http: HttpClient) {}
@@ -28,9 +28,8 @@ export class ApplyformComponent implements OnInit {
     });
   }
   onSubmit(f: NgForm) {
-    setTimeout(() => {
-      this.isSubmitted = true;
-    }, 5000);
+    this.isSubmitted = true;
+
     const form_payload = new FormData();
     form_payload.append('LastName', f.value.last_name);
     form_payload.append('FirstName', f.value.first_name);
