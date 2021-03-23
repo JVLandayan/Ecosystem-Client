@@ -15110,15 +15110,8 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   color: #3C4858;
 }
 
-.footer .copyright {
-  padding: 15px 0;
-}
 
-.footer .copyright .material-icons {
-  font-size: 18px;
-  position: relative;
-  top: 3px;
-}
+
 
 .footer .pull-center {
   display: inline-block;
@@ -15129,12 +15122,6 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-
-@media screen and (min-width: 768px) {
-  .footer .copyright {
-    padding-right: 15px;
-  }
 }
 
 .wrapper {

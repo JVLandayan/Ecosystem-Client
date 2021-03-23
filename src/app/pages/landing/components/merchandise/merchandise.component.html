@@ -34,17 +34,17 @@
             <p class="card-text" style="color: black">
               {{ items.merchDetails }}
             </p>
-            <a
-              [href]="items.merchLink"
+            <button
+              [disabled]="items.merchLink == ''"
               target="_blank"
               style="color: black"
               class="btn btn-outline-dark btn-sm"
-              >See more</a
             >
+              See more
+            </button>
           </div>
         </div>
       </div>
-
       <!--Static data-->
     </div>
   </div>
