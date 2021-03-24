@@ -34,19 +34,22 @@
             <p class="card-text" style="color: black">
               {{ items.merchDetails }}
             </p>
-            <a [href]="items.merchLink">
+            <a
+              [href]="items.merchLink"
+              target="_blank"
+              [class]="
+                items.merchLink == '' || items.merchLink == null
+                  ? 'disabled'
+                  : ''
+              "
+            >
               <button
-                [disabled]="items.merchLink == ''"
-                target="_blank"
                 style="color: black"
                 [class]="
-                  items.merchLink == ''
-                    ? 'btn btn-outline-dark btn-sm disabled'
+                  items.merchLink == '' || items.merchLink == null
+                    ? 'btn btn-outline-dark btn-sm '
                     : 'btn btn-outline-dark btn-sm'
                 "
-                btn
-                btn-outline-dark
-                btn-sm
               >
                 See more
               </button>
