@@ -41,6 +41,13 @@ export class AdminService {
     return this.http.patch(this.apiUrl + 'accounts/' + id, userData);
   }
 
+  UPDATE_account_pass(userData, id) {
+    return this.http.put(this.apiUrl + 'accounts/' + id + '/pass', userData);
+  }
+  UPDATE_account_image(userData, id) {
+    return this.http.put(this.apiUrl + 'accounts/' + id + '/image', userData);
+  }
+
   UploadPhotoAccount(val: any) {
     return this.http.post(this.apiUrl + 'accounts/SaveFile', val);
   }

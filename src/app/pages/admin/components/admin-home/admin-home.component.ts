@@ -89,38 +89,49 @@ export class AdminHomeComponent implements OnInit {
   }
 
   onSubmit(f: NgForm) {
-    const form_payload = [];
-    if (
-      f.value.password_new_confirm != null &&
-      f.value.password_new != null &&
-      f.value.password_new_confirm == f.value.password_new
-    ) {
-      form_payload.push({
-        op: 'replace',
-        path: '/Password',
-        value: f.value.password_new,
-      });
-    }
-    if (this.PhotoFileName != null) {
-      form_payload.push({
-        op: 'replace',
-        path: '/PhotoFileName',
-        value: this.PhotoFileName,
-      });
-    }
+    const form_payload = {
+      firstName: 'string',
+      middleName: 'string',
+      lastName: 'string',
+      email: 'string',
+      photoFileName:
+        this.PhotoFileName == undefined ? 'abc' : this.PhotoFileName,
+      password: this.form.value.password_new,
+      resetToken: '',
+    };
 
-    this.adminService
-      .UPDATE_account(form_payload, this.currentUser.id)
-      .subscribe(
-        (data) => {
-          alert('Successfully Updated');
-          this.ngOnInit();
-        },
-        (error) => {
-          alert('It seems like something happened');
-          this.ngOnInit();
-        }
-      );
+    console.log(form_payload);
+
+    if (this.form.value.image == null || this.form.value.image == '') {
+      this.adminService
+        .UPDATE_account_pass(form_payload, this.currentUser.id)
+        .subscribe(
+          (data) => {
+            alert('Successfully Updated');
+            this.ngOnInit();
+          },
+          (error) => {
+            alert('It seems like something happened');
+            this.ngOnInit();
+          }
+        );
+    } else if (
+      this.form.value.password == null ||
+      this.form.value.password == ''
+    ) {
+      this.adminService
+        .UPDATE_account_image(form_payload, this.currentUser.id)
+        .subscribe(
+          (data) => {
+            alert('Successfully Updated');
+            this.ngOnInit();
+          },
+          (error) => {
+            alert('It seems like something happened');
+            this.ngOnInit();
+          }
+        );
+    }
 
     this.exitEdit();
   }
