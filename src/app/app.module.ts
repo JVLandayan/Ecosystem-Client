@@ -46,6 +46,7 @@ import { ErrorInterceptor } from '../app/shared/helpers/error.interceptor';
 import { ForgotpassComponent } from './pages/forgotpass/forgotpass.component';
 import { AdminHomeComponent } from './pages/admin/components/admin-home/admin-home.component';
 import { ArticlePageComponent } from './pages/articlespage/article-page/article-page.component';
+import { MissionVisionComponent } from './pages/landing/components/mission-vision/mission-vision.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -85,6 +86,7 @@ import { ArticlePageComponent } from './pages/articlespage/article-page/article-
     ForgotpassComponent,
     AdminHomeComponent,
     ArticlePageComponent,
+    MissionVisionComponent,
   ],
   imports: [
     BrowserModule,

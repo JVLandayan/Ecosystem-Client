@@ -12,8 +12,7 @@
           <div class="col-md-8 text-center">
             <h3 class="my-3 section-heading">Articles</h3>
             <h6 class="subtitle font-weight-normal">
-              You can relay on our amazing features list and also our customer
-              services will be great experience for you without doubt
+              Read the Opinions and Insights of the Organization
             </h6>
           </div>
           <!-- Column -->
@@ -22,7 +21,10 @@
         <div class="row mt-4">
           <!-- Column -->
           <div class="col-lg-6" *ngIf="isLoaded">
-            <div class="card border-0 mb-4">
+            <div
+              class="card border-0 mb-4"
+              *ngIf="last_article.id != null || last_article.id != undefined"
+            >
               <a [routerLink]="['articles', last_article.id]"
                 ><img
                   class="card-img-top"
@@ -98,6 +100,7 @@
   <div
     class="row"
     style="margin: 0px 25.5px; padding-right: 15px; padding-left: 15px"
+    *ngIf="articles_landing_list.length >= 1"
   >
     <div class="col text-right" style="padding: 0px">
       <a class="text-uppercase text-right" routerLink="articles"
