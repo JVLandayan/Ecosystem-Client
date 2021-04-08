@@ -90,7 +90,6 @@ export class TeamsAddComponent implements OnInit {
       TeamsInstagram: f_instagram,
       TeamsTwitter: f_twitter,
     };
-    console.log(form_payload);
 
     //Data being posted = formData
     var conf = confirm('Confirm Adding?');

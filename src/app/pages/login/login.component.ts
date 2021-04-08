@@ -79,7 +79,6 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loading = true;
-    console.log(f.value.loginEmail, f.value.loginPass);
     this.authService
       .login(f.value.loginEmail, f.value.loginPass)
       .pipe(first())

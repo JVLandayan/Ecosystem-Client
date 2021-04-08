@@ -16,7 +16,6 @@ export class TeamsListComponent implements OnInit {
     this.adminService.GET_teams_list().subscribe(
       (data) => {
         this.teams_list = data;
-        console.log(this.teams_list);
       },
       (error) => {
         console.log(error);

@@ -79,7 +79,6 @@ export class ContentAddComponent implements OnInit {
     const postData = new FormData();
     postData.append('post_title', f.value.post_title);
     postData.append('post_content', f.value.post_content);
-    console.log(f.value.post_content);
 
     const f_postName: string = f.value.post_title;
     const f_content: string = f.value.post_content;

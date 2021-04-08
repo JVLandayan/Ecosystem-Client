@@ -15,7 +15,6 @@ export class ContentListComponent implements OnInit {
   ngOnInit(): void {
     this.adminService.GET_contents().subscribe((data) => {
       this.content_list = data;
-      console.log(data);
     });
   }
 

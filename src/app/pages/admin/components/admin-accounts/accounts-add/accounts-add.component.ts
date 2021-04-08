@@ -57,7 +57,6 @@ export class AccountsAddComponent implements OnInit {
     const f_middlevalue: string = f.value.middle_name;
     const f_lastvalue: string = f.value.last_name;
     const f_email: string = f.value.ust_email;
-    console.log(f);
 
     var form_payload = {
       AuthId: 2,

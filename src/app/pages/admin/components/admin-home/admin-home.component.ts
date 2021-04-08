@@ -79,12 +79,10 @@ export class AdminHomeComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('uploadedFile', this.selectedFile, this.selectedFile.name);
     formData.append('extn', this.selectedFile.name.split('.').pop());
-    console.log(this.selectedFile.name.split('.').pop().toLowerCase());
 
     this.adminService.UploadPhotoAccount(formData).subscribe((data: any) => {
       this.PhotoFileName = data.toString();
       this.PhotoFilePath = this.adminService.photoUrl + this.PhotoFileName;
-      console.log(this.PhotoFileName);
     });
   }
 
@@ -99,8 +97,6 @@ export class AdminHomeComponent implements OnInit {
       password: this.form.value.password_new,
       resetToken: '',
     };
-
-    console.log(form_payload);
 
     if (this.form.value.image == null || this.form.value.image == '') {
       this.adminService

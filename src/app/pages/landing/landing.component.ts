@@ -17,9 +17,6 @@ export class LandingComponent implements OnInit {
   }
   // tslint:disable-next-line: typedef
   ngOnInit() {
-    this.addJsToElement('../../../assets/js/script.js').onload = (teste) => {
-      console.log(teste);
-      console.log();
-    };
+    this.addJsToElement('../../../assets/js/script.js').onload = (teste) => {};
   }
 }

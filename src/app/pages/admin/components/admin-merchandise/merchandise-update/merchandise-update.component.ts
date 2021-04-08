@@ -70,7 +70,6 @@ export class MerchandiseUpdateComponent implements OnInit {
     const formData: FormData = new FormData();
     formData.append('uploadedFile', this.selectedFile, this.selectedFile.name);
     formData.append('extn', this.selectedFile.name.split('.').pop());
-    console.log(this.selectedFile.name.split('.').pop().toLowerCase());
 
     this.adminService.UploadPhotoAccount(formData).subscribe((data: any) => {
       this.PhotoFileName = data.toString();

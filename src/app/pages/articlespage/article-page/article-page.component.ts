@@ -34,7 +34,7 @@ export class ArticlePageComponent implements OnInit {
         .FETCH_articleAuthor(this.activeArticle.authorId)
         .subscribe((data) => {
           this.articleAuthor = data;
-          console.log(this.articleAuthor.photoFileName);
+
           setTimeout(() => {
             this.isPhotoLoaded = true;
           }, 1000);

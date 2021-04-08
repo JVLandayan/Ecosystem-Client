@@ -16,7 +16,6 @@ export class MerchandiseListComponent implements OnInit {
   ngOnInit(): void {
     this.adminService.GET_merchs().subscribe((res) => {
       this.merch_list = res;
-      console.log(this.merch_list);
     });
   }
 
