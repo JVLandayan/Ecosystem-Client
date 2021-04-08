@@ -15,7 +15,6 @@ export class MerchandiseComponent implements OnInit {
   constructor(private landingService: LandingService) {
     this.landingService.FETCH_merchandise().subscribe((merchdata) => {
       this.merch_list = merchdata;
-      console.log(this.merch_list);
     });
   }
 
